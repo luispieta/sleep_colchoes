@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import sleep.colchoes.domain.empresa.*;
-import sleep.colchoes.domain.pessoa.*;
 
 @RestController
 @RequestMapping("/empresas")

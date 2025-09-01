@@ -1,7 +1,6 @@
 package sleep.colchoes.domain.empresa;
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
