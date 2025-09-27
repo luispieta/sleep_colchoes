@@ -5,8 +5,8 @@ interface PropsCampos {
     tipo: string,
     nome: string,
     children: ReactNode,
-    descricao: string,
-    obrigatorio: boolean
+    descricao?: string,
+    obrigatorio?: boolean
 }
 
 export default function Campos({tipo, nome, children, descricao, obrigatorio}: PropsCampos) {

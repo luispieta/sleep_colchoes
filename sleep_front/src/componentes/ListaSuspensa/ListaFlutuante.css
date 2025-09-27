@@ -1,14 +1,15 @@
-.campo{
-    margin: 24px 0;   
+.lista-suspensa{
+    margin: 24px 0;
+    color: black;
 }
 
-.campo label{
+.lista-suspensa label{
     display: block;
     margin-bottom: 8px;
     font-size: 24px;
 }
 
-.campo input{
+.lista-suspensa select{
     box-shadow: 10px 10px 30px #4e4e4e;
     width: 100%;
     border: none;
@@ -17,4 +18,3 @@
     box-sizing: border-box;
     border-radius: 5px;
 }
-
