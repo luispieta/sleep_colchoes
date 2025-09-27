@@ -1,9 +1,9 @@
-import Formulario from "../componentes/Formulario";
+import CadastroPessoa from "../componentes/Cadastro-pessoa";
 
 export default function App() {
   return (
     <>
-      <Formulario/>
+      <CadastroPessoa/>
     </>
   )
 }

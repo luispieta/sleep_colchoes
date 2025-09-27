@@ -1,4 +1,3 @@
-import Botao from "../Botao";
 import Campos from "../Campos";
 import ListaSuspensa from "../ListaSuspensa";
 import "./formulario.css"
@@ -55,7 +54,6 @@ export default function Formulario() {
                     obrigatorio={false}
                     itens={itens}
                 >Gênero: </ListaSuspensa>
-                <Botao tipo="submit">Salvar</Botao>
             </form>
         </div>
     )
