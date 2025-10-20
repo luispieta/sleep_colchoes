@@ -10,6 +10,11 @@ export default function Formulario() {
         "Outros"
     ]
 
+    const representanteCliente = [
+        "Vendedor",
+        "Cliente"
+    ]
+
     return(
         <div className="formulario">
             <form>
@@ -34,7 +39,7 @@ export default function Formulario() {
                 <Campos 
                     tipo="email" 
                     nome="email-pessoa" 
-                    descricao="Digite aqui E-mail" 
+                    descricao="Digite aqui e-mail" 
                     obrigatorio={true}
                 >E-mail: </Campos>
                 <Campos 
@@ -54,6 +59,11 @@ export default function Formulario() {
                     obrigatorio={false}
                     itens={itens}
                 >Gênero: </ListaSuspensa>
+                <ListaSuspensa
+                    nome="cliente-representante"
+                    obrigatorio={false}
+                    itens={representanteCliente}
+                >Vendedor/Cliente: </ListaSuspensa>
             </form>
         </div>
     )

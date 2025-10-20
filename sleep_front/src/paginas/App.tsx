@@ -1,9 +1,9 @@
-import CadastroPessoa from "../componentes/Cadastro-pessoa";
+import PaginaPrincipal from "../componentes/PaginaPrincipal";
 
 export default function App() {
   return (
     <>
-      <CadastroPessoa/>
+      <PaginaPrincipal/>
     </>
   )
 }

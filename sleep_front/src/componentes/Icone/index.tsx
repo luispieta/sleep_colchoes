@@ -1,13 +1,13 @@
-import type { IconType } from "react-icons";
+import type { ReactNode } from "react";
 
 interface PropsIcone {
-  icone: IconType;
+  icone: ReactNode;
 }
 
-export default function Icone({ icone: Icone }: PropsIcone) {
-  return (
-    <div>
-      <Icone />
+export default function Icone({ icone }: PropsIcone) {
+  return( 
+    <div className="icone">
+      <span >{icone}</span>
     </div>
-  );
+  )
 }
