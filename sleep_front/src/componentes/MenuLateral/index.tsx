@@ -1,30 +1,32 @@
-import { IoCart, IoPersonCircleOutline } from "react-icons/io5"
 import Icone from "../Icone"    
 import "./menuLateral.css"
-import { BsBoxSeam } from "react-icons/bs"
-import { GiNightSleep } from "react-icons/gi"
+import { BsBoxSeam, BsCart4, BsPersonCircle } from "react-icons/bs"
+import { IoMdExit } from "react-icons/io"
 
 export default function () {
     return(
-        <div className="menu-lateral">
-            <nav className="menu">
-                <li className="rotina">
-                    <Icone icone={<GiNightSleep size={25}/>} />
-                    <a href="#">Início</a>
-                </li>
-                <li className="rotina">
-                    <Icone icone={<IoCart size={25}/>} />
-                    <a href="#">Pedido</a>
-                </li>
-                <li className="rotina">
-                    <Icone icone={<BsBoxSeam size={25}/>} />
-                    <a href="#">Estoque</a>
-                </li>
-                <li className="rotina">
-                    <Icone icone={<IoPersonCircleOutline size={30}/>}  />
-                    <a href="#">Pessoa</a>
-                </li>
+        <aside className="menu">
+            <div className="menu-header">
+                <div className="menu-logo">
+                </div>
+                <h2>Empresa ABC</h2>
+            </div>
+            <nav className="menu-nav">
+                <a href="#">
+                    <Icone icone={<BsCart4  size={25}/>} /> Pedidos
+                </a>
+                <a href="#">
+                    <Icone icone={<BsBoxSeam size={25}/>} /> Produtos
+                </a>
+                <a href="#">
+                    <Icone icone={<BsPersonCircle size={25}/>}  /> Pessoa
+                </a>
             </nav>
-        </div>
+            <div className="menu-footer">
+                <a href="#">
+                    <Icone icone={<IoMdExit size={30}/>}/> Sair
+                </a>
+            </div>
+        </aside>
     )
 }

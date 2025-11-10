@@ -1,9 +1,12 @@
 import PaginaPrincipal from "../componentes/PaginaPrincipal";
+import "./App.css"
 
 export default function App() {
   return (
     <>
-      <PaginaPrincipal/>
+      <div className="app-container">
+        <PaginaPrincipal/>
+      </div>
     </>
   )
 }
