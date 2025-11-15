@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import "./campos.css"
+import "./campos.scss"
 
 interface PropsCampos {
     tipo: string,

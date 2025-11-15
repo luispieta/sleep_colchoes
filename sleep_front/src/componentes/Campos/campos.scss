@@ -1,0 +1,22 @@
+@use "../../styles/variaveis" as *;
+
+.campo {
+  margin: $margin-padrao 0;
+  color: black;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: $fonte-grande;
+  }
+
+  input {
+    width: 100%;
+    padding: $padding-padrao;
+    box-shadow: $sombra-card;
+    border: none;
+    font-size: $fonte-grande;
+    border-radius: $radius-padrao;
+    box-sizing: border-box;
+  }
+}

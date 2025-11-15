@@ -1,6 +1,6 @@
 import Icone from "../Icone"    
-import "./menuLateral.css"
-import { BsBoxSeam, BsCart4, BsPersonCircle } from "react-icons/bs"
+import "./menuLateral.scss"
+import { BsBoxSeam, BsCart4, BsPersonCircle, BsFillHouseFill } from "react-icons/bs"
 import { IoMdExit } from "react-icons/io"
 
 export default function () {
@@ -13,13 +13,16 @@ export default function () {
             </div>
             <nav className="menu-nav">
                 <a href="#">
+                    <Icone icone={<BsFillHouseFill size={25}/>}  /> Painel
+                </a>
+                <a href="#">
                     <Icone icone={<BsCart4  size={25}/>} /> Pedidos
                 </a>
                 <a href="#">
                     <Icone icone={<BsBoxSeam size={25}/>} /> Produtos
                 </a>
                 <a href="#">
-                    <Icone icone={<BsPersonCircle size={25}/>}  /> Pessoa
+                    <Icone icone={<BsPersonCircle size={25}/>}  /> Clientes
                 </a>
             </nav>
             <div className="menu-footer">

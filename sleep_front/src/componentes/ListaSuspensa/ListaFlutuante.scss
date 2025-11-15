@@ -1,0 +1,22 @@
+@use "../../styles/variaveis" as *;
+
+.lista-suspensa {
+  margin: $margin-padrao 0;
+  color: black;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: $fonte-grande;
+  }
+
+  select {
+    width: 100%;
+    padding: $padding-padrao;
+    border-radius: $radius-padrao;
+    box-shadow: $sombra-card;
+    border: none;
+    box-sizing: border-box;
+    font-size: $fonte-grande;
+  }
+}

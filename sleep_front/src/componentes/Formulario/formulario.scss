@@ -1,0 +1,15 @@
+@use "../../styles/variaveis" as *;
+
+.formulario {
+  display: flex;
+  justify-content: center;
+
+  form {
+    max-width: 80%;
+    width: 40%;
+    background-color: $cor-background-claro;
+    border-radius: 2px;
+    padding: 36px 64px;
+    box-shadow: 2px 2px 30px #6e6e6e;
+  }
+}

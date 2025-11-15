@@ -1,6 +1,6 @@
 import Card from "../Card"
 import MenuLateral from "../MenuLateral"
-import "./paginaPrincipal.css"
+import "./paginaPrincipal.scss"
 
 export default function PaginaPrincipal () {
     return(

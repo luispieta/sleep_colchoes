@@ -1,5 +1,5 @@
 import { type ReactNode } from "react"
-import "./botao.css"
+import "./botao.scss"
 
 interface PropsBotao {
     children: ReactNode,

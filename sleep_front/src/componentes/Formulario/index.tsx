@@ -1,6 +1,6 @@
 import Campos from "../Campos";
 import ListaSuspensa from "../ListaSuspensa";
-import "./formulario.css"
+import "./formulario.scss"
 
 export default function Formulario() {
 

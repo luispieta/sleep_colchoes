@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import "./ListaFlutuante.css"
+import "./ListaFlutuante.scss"
 
 interface PropsListaSuspensa {
     nome: string,
