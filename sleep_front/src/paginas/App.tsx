@@ -1,4 +1,4 @@
-import PaginaPrincipal from "../componentes/PaginaPrincipal";
+import PaginaPrincipal from "../menuPrincipal/PaginaPrincipal"
 import "./App.scss"
 
 export default function App() {
