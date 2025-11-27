@@ -1,0 +1,9 @@
+@use "../../styles/variaveis" as *;
+
+.pagina-principal {
+  display: flex ;
+  flex-direction: row;
+  height: 100%;
+  background-color: #e8e8e8;
+  color: #1a1a1a;
+}

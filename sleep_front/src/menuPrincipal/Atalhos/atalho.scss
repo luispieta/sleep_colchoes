@@ -1,0 +1,25 @@
+@use "../../styles/variaveis" as *;
+
+.atalhos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    width: 100%;
+
+    .atalho-footer, .atalho-main{
+        border: $borda-padrao;
+        border-radius: $radius-padrao;
+        padding: $padding-padrao;
+        font-size: $fonte-grande;
+        width: 1000px;
+    }
+
+    .atalho-main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
