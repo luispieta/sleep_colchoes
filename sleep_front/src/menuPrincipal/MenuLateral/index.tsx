@@ -29,7 +29,7 @@ export default function () {
                 </a>
             </nav>
             <div className="menu-footer">
-                <a href="#">
+                <a href="../../paginas/paginaLogin">
                     <Icone icone={<IoMdExit size={30}/>} /> Sair
                 </a>
             </div>
