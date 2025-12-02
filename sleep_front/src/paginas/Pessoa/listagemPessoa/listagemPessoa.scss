@@ -1,0 +1,77 @@
+.filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  align-items: center;
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+    flex: 1;
+
+    input {
+      border: none;
+      width: 100%;
+      margin-left: 10px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+
+  .add-btn {
+    background: #1677ff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+      background: #0f5fd8;
+    }
+  }
+}
+
+
+.people-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+
+  th, td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+  }
+
+  th {
+    text-align: left;
+    background: #fafafa;
+  }
+
+  tr:hover {
+    background: #f5faff;
+  }
+
+  .actions {
+    font-size: 18px;
+    cursor: pointer;
+
+    span {
+      margin-right: 10px;
+    }
+  }
+}

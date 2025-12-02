@@ -1,4 +1,4 @@
-package sleep.colchoes.domain.usuario;
-
-public record DTOAutenticacao(String login, String senha) {
-}
+//package sleep.colchoes.domain.usuario;
+//
+//public record DTOAutenticacao(String login, String senha) {
+//}

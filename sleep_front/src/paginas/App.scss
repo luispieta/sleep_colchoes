@@ -3,3 +3,21 @@ body {
   padding: 0;
   font: 18px "Inter", sans-serif;
 }
+
+.pessoas-page {
+  display: flex;
+
+  main {
+    flex: 1;
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  p {
+    color: #666;
+    margin-bottom: 20px;
+  }
+}

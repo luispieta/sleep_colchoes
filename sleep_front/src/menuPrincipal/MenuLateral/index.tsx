@@ -1,4 +1,4 @@
-import Icone from "../../componentes/Icone"    
+import Icone from "../../componentes/Icone" 
 import "./menuLateral.scss"
 import { BsBoxSeam, BsCart4, BsPersonCircle, BsGear, BsHouse } from "react-icons/bs"
 import { IoMdExit } from "react-icons/io"
@@ -21,7 +21,7 @@ export default function () {
                 <a href="#">
                     <Icone icone={<BsBoxSeam size={25}/>} /> Produtos
                 </a>
-                <a href="#">
+                <a href="../../paginas/Pessoa/listagemPessoa/index.tsx">
                     <Icone icone={<BsPersonCircle size={25}/>} /> Clientes
                 </a>
                 <a href="#">
@@ -29,7 +29,7 @@ export default function () {
                 </a>
             </nav>
             <div className="menu-footer">
-                <a href="../../paginas/paginaLogin">
+                <a href="#">
                     <Icone icone={<IoMdExit size={30}/>} /> Sair
                 </a>
             </div>
