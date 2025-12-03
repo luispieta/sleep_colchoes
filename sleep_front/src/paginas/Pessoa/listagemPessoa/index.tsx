@@ -1,14 +1,16 @@
+import { BsPencilFill, BsTrashFill } from "react-icons/bs"
 import "./listagemPessoa.scss"
+import type { PessoaData } from "../../../types/pessoa/PessoaData"
 
 interface PropsListagemPessoa {
-    pessoas: any,
+    pessoas: PessoaData[],
 
 }
 
 export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
     return(
     <div>
-        <table className="people-table">
+        <table className="pessoa-table">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -28,7 +30,10 @@ export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
                         <td>{pessoa.cpf}</td>
                         <td>{pessoa.telefone}</td>
                         <td>{pessoa.email}</td>
-                        <td>{pessoa.enderecoEntrega}</td>                        
+                        <td>
+                            {pessoa.enderecoEntrega.cidade} - {pessoa.enderecoEntrega.uf} 
+                        </td>
+                        <td className="acoes"><BsPencilFill size={20}/> <BsTrashFill size={20}/></td>            
                     </tr>
                 ))}
             </tbody>

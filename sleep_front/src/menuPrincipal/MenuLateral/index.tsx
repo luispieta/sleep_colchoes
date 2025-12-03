@@ -1,7 +1,6 @@
 import Icone from "../../componentes/Icone" 
 import "./menuLateral.scss"
-import { BsBoxSeam, BsCart4, BsPersonCircle, BsGear, BsHouse } from "react-icons/bs"
-import { IoMdExit } from "react-icons/io"
+import { BsBoxSeam, BsCart4, BsPersonCircle, BsGear, BsHouse, BsDoorOpen  } from "react-icons/bs"
 
 export default function () {
     return(
@@ -30,7 +29,7 @@ export default function () {
             </nav>
             <div className="menu-footer">
                 <a href="#">
-                    <Icone icone={<IoMdExit size={30}/>} /> Sair
+                    <Icone icone={<BsDoorOpen  size={25}/>} /> Sair
                 </a>
             </div>
         </aside>

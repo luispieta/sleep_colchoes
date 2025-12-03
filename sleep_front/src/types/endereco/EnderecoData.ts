@@ -1,4 +1,4 @@
-export interface Endereco {
+export interface EnderecoData {
     cep: string;
     logradouro: string;
     numero: string;

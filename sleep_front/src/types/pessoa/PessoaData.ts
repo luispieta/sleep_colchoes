@@ -1,4 +1,4 @@
-import type { Endereco } from "../endereco/EnderecoData";
+import type { EnderecoData } from "../endereco/EnderecoData";
 import type { Genero } from "../enums/Genero";
 
 export interface PessoaData {
@@ -9,7 +9,7 @@ export interface PessoaData {
     email: string,
     genero: Genero,
     dataNascimento: Date,
-    enderecoEntrega: Endereco,
-    enderecoCobranca: Endereco,
+    enderecoEntrega: EnderecoData,
+    enderecoCobranca: EnderecoData,
     ativo: boolean
 }
