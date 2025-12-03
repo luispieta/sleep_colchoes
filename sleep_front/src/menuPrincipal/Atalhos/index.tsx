@@ -3,10 +3,6 @@ import Icone from "../../componentes/Icone";
 import Card from "../Card";
 import "./atalho.scss"
 
-interface PropsAtalhos {
-    atalho: object
-}
-
 export default function Atalhos() {
     return(
         <div className="atalhos">

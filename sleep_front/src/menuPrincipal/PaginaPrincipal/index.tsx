@@ -6,7 +6,10 @@ export default function PaginaPrincipal () {
     return(
         <div className="pagina-principal">
             <MenuLateral/>
-            <Atalhos/>
+            
+            <div className="conteudo-principal">
+                <Atalhos/>
+            </div>
         </div>
     )
 }

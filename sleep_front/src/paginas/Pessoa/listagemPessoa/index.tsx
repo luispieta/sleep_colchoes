@@ -10,6 +10,7 @@ interface PropsListagemPessoa {
 export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
     return(
     <div>
+        <h1>Gerenciamento de Pessoas</h1>
         <table className="pessoa-table">
             <thead>
                 <tr>

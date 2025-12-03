@@ -21,9 +21,6 @@ export default function App() {
     <>
       <div className="app-container">
         <PaginaPrincipal/>
-        
-        <h1>Gerenciamento de Pessoas</h1>
-
         <ListagemPessoa pessoas={pessoas}/>
       </div>
     </>
