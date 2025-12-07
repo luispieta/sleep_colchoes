@@ -1,25 +1,3 @@
-.pessoa-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-
-  th, td {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-  }
-
-  th {
-    text-align: left;
-    background: #fafafa;
-  }
-
-  tr:hover {
-    background: #f5faff;
-  }
-
-  .acoes {
+.acoes {
     cursor: pointer;
-  }
 }

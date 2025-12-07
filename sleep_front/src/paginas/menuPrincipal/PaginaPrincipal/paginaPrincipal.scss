@@ -1,0 +1,15 @@
+@use "../../../styles/variaveis" as *;
+
+.pagina-principal {
+  display: flex ;
+  flex-direction: row;
+  background-color: $cor-background-claro;
+  color: #1a1a1a;
+}
+
+.conteudo-principal {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  overflow-y: auto;
+  min-height: 100vh;
+}
