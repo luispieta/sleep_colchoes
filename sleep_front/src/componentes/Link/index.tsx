@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
 import "./menuLateralLink.scss";
+import type { ReactNode } from "react";
 
 interface PropsMenuLateralLink{
-    children: any,
+    children?: ReactNode,
     to: string
 }
 
-export default function MenuLateralLink({ children, to }: PropsMenuLateralLink) {
+export default function Link({ children, to }: PropsMenuLateralLink) {
     return(
         <NavLink to={to} end>
             {children}

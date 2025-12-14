@@ -3,6 +3,7 @@ import PaginaPrincipal from "./paginas/menuPrincipal/PaginaPrincipal"
 import "./App.scss"
 import ListagemPessoa from "./paginas/Pessoa/listagemPessoa"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import CadastrarPessoa from "./paginas/Pessoa/cadastrarPessoa";
 
 export default function App() {
   
@@ -24,6 +25,7 @@ export default function App() {
         <Routes>
           <Route path="/paginaprincipal" element={<PaginaPrincipal/>}/>
           <Route path="/pessoa/listagempessoa" element={<ListagemPessoa pessoas={pessoas}/>}/>
+          <Route path="/pessoa/cadastropessoa" element={<CadastrarPessoa />}/>
         </Routes>
       </BrowserRouter>
     </>

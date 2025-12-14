@@ -1,5 +1,5 @@
 import Icone from "../../componentes/Icone" 
-import MenuLateralLink from "../MenuLateralLink"
+import MenuLateralLink from "../../componentes/Link"
 import "./menuLateral.scss"
 import { BsBoxSeam, BsCart4, BsPersonCircle, BsGear, BsHouse, BsDoorOpen  } from "react-icons/bs"
 
