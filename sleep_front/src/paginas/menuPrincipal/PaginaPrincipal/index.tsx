@@ -7,7 +7,7 @@ export default function PaginaPrincipal () {
         <div className="pagina-principal">
             <MenuLateral/>
             
-            <div className="conteudo-principal">
+            <div className="conteudo-atalhos">
                 <Atalhos/>
             </div>
         </div>

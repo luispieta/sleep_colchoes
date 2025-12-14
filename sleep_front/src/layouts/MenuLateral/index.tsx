@@ -15,13 +15,13 @@ export default function () {
                 <MenuLateralLink to="/paginaprincipal">
                     <Icone icone={<BsHouse size={25}/>} /> Painel
                 </MenuLateralLink>
-                <MenuLateralLink to="/listagempedidos">
+                <MenuLateralLink to="/pedido/listagempedidos">
                     <Icone icone={<BsCart4  size={25}/>} /> Pedidos
                 </MenuLateralLink>
-                <MenuLateralLink to="/listagemprodutos">
+                <MenuLateralLink to="/produto/listagemprodutos">
                     <Icone icone={<BsBoxSeam size={25}/>} /> Produtos
                 </MenuLateralLink>
-                <MenuLateralLink to="/listagempessoa">
+                <MenuLateralLink to="/pessoa/listagempessoa">
                     <Icone icone={<BsPersonCircle size={25}/>} /> Clientes
                 </MenuLateralLink>
                 <MenuLateralLink to="/configuracoes">

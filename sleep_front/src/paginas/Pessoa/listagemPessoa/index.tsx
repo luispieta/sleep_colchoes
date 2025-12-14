@@ -3,6 +3,7 @@ import "./listagemPessoa.scss"
 import type { PessoaData } from "../../../types/pessoa/PessoaData"
 import MenuLateral from "../../../layouts/MenuLateral"
 import Listagens from "../../../componentes/Listagens"
+import Filtro from "../../../componentes/Filtro"
 
 interface PropsListagemPessoa {
     pessoas: PessoaData[],
@@ -11,9 +12,11 @@ interface PropsListagemPessoa {
 
 export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
     return(
-        <div>
+        <div className="listagem-pessoa">
             <MenuLateral/>
-            <Listagens
+            <div className="pessoa-conteiner">
+                <Filtro />
+                <Listagens
                     titulo="Gerenciamento de Pessoas"
                     colunas={[
                         { cabecalho: "Código" },
@@ -36,11 +39,13 @@ export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
                                 {pessoa.enderecoEntrega?.cidade} - {pessoa.enderecoEntrega?.uf}
                             </td>
                             <td className="acoes">
-                                <BsPencilFill size={20} /> <BsTrashFill size={20} />
+                                <BsPencilFill size={16} /> <BsTrashFill size={16} />
                             </td>
                         </tr>
                     )}
                 />
+            </div>
         </div>
+
     )
 } 

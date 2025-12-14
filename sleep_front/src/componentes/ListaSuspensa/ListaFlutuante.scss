@@ -1,22 +1,31 @@
 @use "../../styles/variaveis" as *;
 
 .lista-suspensa {
-  margin: $margin-padrao 0;
-  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 
   label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: $fonte-grande;
+    font-size: $fonte-padrao;
+    font-weight: 600;
+    color: $cor-primaria;
   }
 
   select {
     width: 100%;
-    padding: $padding-padrao;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    background: #fff;
     border-radius: $radius-padrao;
-    box-shadow: $sombra-card;
-    border: none;
-    box-sizing: border-box;
-    font-size: $fonte-grande;
+    font-size: 0.95rem;
+    color: $cor-primaria;
+    transition: 0.2s ease;
+    cursor: pointer;
+
+    &:focus {
+      border-color: $cor-primaria;
+      box-shadow: $sombra-card; 
+      outline: none;    
+    }
   }
 }

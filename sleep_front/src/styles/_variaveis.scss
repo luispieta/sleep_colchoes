@@ -1,17 +1,19 @@
 $cor-primaria: #222222;
 $cor-secundaria: #ffffff;
-$cor-hover: #ee86cb;
-$cor-background-claro: #f2f2f2f2;
-$cor-sombra: #4e4e4e;
+$cor-hover: #797979;
+$cor-background-claro: #f8f8f8f2;
+$cor-sombra: #0000004d;
+$cor-descricao: #797979;
 
-$sombra-card: 10px 10px 30px $cor-sombra;
+$sombra-card: 0 5px 5px #0000004d;
 
 $radius-padrao: 5px;
 $radius-card: 12px;
 
 $fonte-grande: 24px;
+$fonte-padrao: 16px;
 
-$padding-padrao: 20px;
+$padding-padrao: 1rem;
 $margin-padrao: 24px;
 
-$borda-padrao: solid 2px #000000
+$borda-padrao: solid 2px $cor-primaria;

@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import "./ListaFlutuante.scss"
+import "./listaFlutuante.scss"
 
 interface PropsListaSuspensa<T extends string> {
     nome: string;
     children: ReactNode;
-    obrigatorio: boolean;
+    obrigatorio?: boolean;
     itens: T[];
     labels?: Record<T, string>;
 }
@@ -24,11 +24,15 @@ export default function CampoFlutuante<T extends string>({
                 name={nome} 
                 id={nome}
                 required={obrigatorio}
+                defaultValue=""
             >
+                <option value="" disabled>
+                    Selecione...
+                </option>
+
                 {itens.map((item) => (
                     <option key={item} value={item}>
-                        {labels?.[item] ?? item} 
-                        {/* se tiver label usa label, senão mostra o próprio item */}
+                        {labels?.[item] ?? item}
                     </option>
                 ))}
             </select>

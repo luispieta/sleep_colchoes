@@ -4,11 +4,13 @@ import "./botao.scss"
 interface PropsBotao {
     children: ReactNode,
     tipo: "submit" | "reset" | "button"
-    onClick?: () => void
+    onClick?: () => void,
+    icone?: ReactNode;
+
 }
 
-export default function Botao({children, tipo, onClick}: PropsBotao) {
+export default function Botao({children, tipo, onClick, icone}: PropsBotao) {
     return(
-        <button onClick={onClick} type={tipo} className="botao">{children}</button>    
+        <button onClick={onClick} type={tipo} className="botao">{icone}{children}</button>    
     )
 }

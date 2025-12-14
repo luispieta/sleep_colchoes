@@ -1,3 +1,20 @@
-.acoes {
-    cursor: pointer;
+@use "../../../styles/variaveis" as *;
+
+.listagem-pessoa {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    padding: 2rem;
+    background-color: $cor-background-claro;
+    min-height: 100vh;
+    height: auto;
+
+    .pessoa-conteiner{
+        background-color: #ededed;
+        padding: 2rem;
+        border-radius: 5px;
+    }   
+
+    .acoes {
+        cursor: pointer;
+    }
 }

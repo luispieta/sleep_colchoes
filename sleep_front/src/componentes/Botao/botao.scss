@@ -1,17 +1,20 @@
 @use "../../styles/variaveis" as *;
 
-.botao {
+.botao{
+  display: flex;
+  align-items: center;
+  height: 48px;
   background-color: $cor-primaria;
   border-radius: $radius-padrao;
   font-weight: 700;
-  font-size: 18px;
+  font-size: $fonte-padrao;
   padding: $padding-padrao;
   border: none;
   cursor: pointer;
   color: $cor-secundaria;
-  margin: 32px 0;
   box-shadow: $sombra-card;
-
+  transition: background .30s ease;
+  
   &:hover {
     background-color: $cor-hover;
   }

@@ -23,7 +23,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/paginaprincipal" element={<PaginaPrincipal/>}/>
-          <Route path="/listagempessoa" element={<ListagemPessoa pessoas={pessoas}/>}/>
+          <Route path="/pessoa/listagempessoa" element={<ListagemPessoa pessoas={pessoas}/>}/>
         </Routes>
       </BrowserRouter>
     </>

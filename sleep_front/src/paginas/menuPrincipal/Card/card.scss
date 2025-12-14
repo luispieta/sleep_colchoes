@@ -22,7 +22,7 @@
     height: 250px;
     margin-top: 18px;
     transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    box-shadow: $sombra-card;
 
     &:hover {
       transform: translateY(-4px);

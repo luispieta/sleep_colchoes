@@ -1,27 +1,23 @@
 @use "../../styles/variaveis" as *;
 
-.conteudo-principal {
-    margin-left: 280px;
-    width: calc(100% - 280px);
-    overflow-y: auto;
-    min-height: 100vh;
-}
-
 .tabela {
     width: 100%;
     border-collapse: collapse;
     background: #fff;
-    border-radius: 12px;
+    border-radius: $radius-padrao;
     overflow: hidden;
+    box-shadow: $sombra-card;
 
     th, td {
         padding: 15px;
         border-bottom: 1px solid #eee;
+        font-size: $fonte-padrao;
     }
 
     th {
         text-align: left;
         background: $cor-background-claro;
+        font-size: $fonte-padrao;
     }
 
     tr:hover {

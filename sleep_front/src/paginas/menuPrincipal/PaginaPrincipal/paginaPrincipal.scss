@@ -7,9 +7,11 @@
   color: #1a1a1a;
 }
 
-.conteudo-principal {
+.conteudo-atalhos {
   margin-left: 280px;
   width: calc(100% - 280px);
-  overflow-y: auto;
   min-height: 100vh;
+  padding: 2rem;
+  background: #f7f8fa;
+  overflow-y: auto;
 }
