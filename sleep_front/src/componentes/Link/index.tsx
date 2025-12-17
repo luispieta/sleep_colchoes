@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import "./menuLateralLink.scss";
 import type { ReactNode } from "react";
 
 interface PropsMenuLateralLink{

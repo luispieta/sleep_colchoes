@@ -4,6 +4,7 @@ import Campos from "../Campos";
 import ListaSuspensa from "../ListaSuspensa";
 import "./filtro.scss";
 import Link from "../Link";
+import { useState } from "react";
 
 interface PropsFiltro{
     rotina: string,
@@ -11,6 +12,9 @@ interface PropsFiltro{
 }
 
 export default function Filtro({rotina}: PropsFiltro) {
+
+    const [pesquisa, setPesquisa] = useState("");
+
     return(
         <div className="filtro">
             <Campos
@@ -28,7 +32,9 @@ export default function Filtro({rotina}: PropsFiltro) {
             <ListaSuspensa 
                 nome={"cidade"} 
                 children={"Cidade"} 
-                itens={[]} 
+                itens={[]}
+                valor={pesquisa}
+                onChange={e => setPesquisa(e.target.value )}
             />
             <Link to={"/pessoa/cadastropessoa"}>
                 <Botao tipo={"button"} icone={<BsPlus size={25}/>}>Nova pessoa</Botao>

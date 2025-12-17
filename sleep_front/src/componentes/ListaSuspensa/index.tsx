@@ -7,6 +7,8 @@ interface PropsListaSuspensa<T extends string> {
     obrigatorio?: boolean;
     itens: T[];
     labels?: Record<T, string>;
+    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    valor: T | "";
 }
 
 export default function CampoFlutuante<T extends string>({
@@ -14,7 +16,9 @@ export default function CampoFlutuante<T extends string>({
     children,
     obrigatorio,
     itens,
-    labels
+    labels,
+    onChange,
+    valor
 }: PropsListaSuspensa<T>) {
 
     return (
@@ -24,7 +28,8 @@ export default function CampoFlutuante<T extends string>({
                 name={nome} 
                 id={nome}
                 required={obrigatorio}
-                defaultValue=""
+                onChange={onChange} 
+                value={valor ?? ""}
             >
                 <option value="" disabled>
                     Selecione...
