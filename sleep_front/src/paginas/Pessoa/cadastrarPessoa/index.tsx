@@ -1,4 +1,4 @@
-import { BsBuilding, BsFileEarmark, BsFloppy } from "react-icons/bs";
+import { BsFileEarmark, BsFloppy } from "react-icons/bs";
 import Botao from "../../../componentes/Botao";
 import Campos from "../../../componentes/Campos";
 import ListaSuspensa from "../../../componentes/ListaSuspensa";
@@ -7,7 +7,7 @@ import { Genero, GeneroLabel } from "../../../types/enums/Genero";
 import { useState } from "react";
 import "./cadastrarPessoa.scss"
 
-type Aba = "endereco";
+type Aba = "cadastroGerais";
 
 export default function CadastrarPessoa() {
   const [nome, setNome] = useState("");
@@ -23,7 +23,7 @@ export default function CadastrarPessoa() {
   const [uf, setUf] = useState("");
   const [cep, setCep] = useState("");
   const [logradouro, setLogradouro] = useState("");
-  const [abaAtiva, setAbaAtiva] = useState<Aba>("endereco");
+  const [abaAtiva, setAbaAtiva] = useState<Aba>("cadastroGerais");
 
   async function cadastrarPessoa(e: React.FormEvent) {
     e.preventDefault();
@@ -75,6 +75,22 @@ export default function CadastrarPessoa() {
     }
   }
 
+  async function novo() {
+    setNome("");
+    setCpf("");
+    setTelefone("");
+    setEmail("");
+    setGenero("");
+    setDataNascimento("");
+    setRua("");
+    setNumero("");
+    setCidade("");
+    setBairro("");
+    setUf("");
+    setCep("");
+    setLogradouro("");
+  }
+
   return (
     <div className="cadastro-pessoa">
       <MenuLateral />
@@ -82,14 +98,17 @@ export default function CadastrarPessoa() {
       <div className="tabs-cadastro">
         <button
           type="button"
-          className={`aba ${abaAtiva === "endereco" ? "ativa" : ""}`}
-          onClick={() => setAbaAtiva("endereco")}
+          className={`aba ${abaAtiva === "cadastroGerais" ? "ativa" : ""}`}
+          onClick={() => setAbaAtiva("cadastroGerais")}
         >
-          Endereço
+          Cadastro Gerais
         </button>
       </div>
 
       <form className="pessoa-conteiner" onSubmit={cadastrarPessoa}>
+        <div className="separador-com-texto">
+          <h4>Dados do Cliente</h4>
+        </div>        
         <div className="linha linha-2">
           <Campos
             tipo="text"
@@ -158,7 +177,22 @@ export default function CadastrarPessoa() {
           </Campos>
         </div>
 
+        <div className="separador-com-texto">
+          <h4>Endereço</h4>
+        </div>
+
         <div className="linha linha-2">
+          <Campos
+            tipo="text"
+            nome="campo-cep"
+            descricao="00000-000"
+            obrigatorio
+            valor={cep}
+            onChange={e => setCep(e.target.value)}
+          >
+            CEP
+          </Campos>
+
           <Campos
             tipo="text"
             nome="campo-rua"
@@ -170,30 +204,9 @@ export default function CadastrarPessoa() {
             Rua
           </Campos>
 
-          <Campos
-            tipo="text"
-            nome="campo-numero"
-            descricao="Digite o número"
-            obrigatorio
-            valor={numero}
-            onChange={e => setNumero(e.target.value)}
-          >
-            Número
-          </Campos>
         </div>
 
         <div className="linha linha-3">
-          <Campos
-            tipo="text"
-            nome="campo-cidade"
-            descricao="Digite a cidade"
-            obrigatorio
-            valor={cidade}
-            onChange={e => setCidade(e.target.value)}
-          >
-            Cidade
-          </Campos>
-
           <Campos
             tipo="text"
             nome="campo-bairro"
@@ -204,6 +217,17 @@ export default function CadastrarPessoa() {
           >
             Bairro
           </Campos>
+
+          <Campos
+            tipo="text"
+            nome="campo-numero"
+            descricao="Digite o número"
+            obrigatorio
+            valor={numero}
+            onChange={e => setNumero(e.target.value)}
+          >
+            Número
+          </Campos>        
 
           <Campos
             tipo="text"
@@ -220,14 +244,14 @@ export default function CadastrarPessoa() {
         <div className="linha linha-2">
           <Campos
             tipo="text"
-            nome="campo-cep"
-            descricao="00000-000"
+            nome="campo-cidade"
+            descricao="Digite a cidade"
             obrigatorio
-            valor={cep}
-            onChange={e => setCep(e.target.value)}
+            valor={cidade}
+            onChange={e => setCidade(e.target.value)}
           >
-            CEP
-          </Campos>
+            Cidade
+          </Campos>  
 
           <Campos
             tipo="text"
@@ -246,7 +270,11 @@ export default function CadastrarPessoa() {
             Salvar
           </Botao>
 
-          <Botao tipo="button" icone={<BsFileEarmark size={16} />}>
+          <Botao 
+            tipo="button" 
+            icone={<BsFileEarmark size={16} />}
+            onClick={novo}
+          >
             Novo
           </Botao>
         </div>

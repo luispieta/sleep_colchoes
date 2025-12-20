@@ -5,14 +5,14 @@
   flex-direction: column;
   gap: 6px;
 
-  label { 
+  label {
     font-size: 0.85rem;
     font-weight: 600;
     color: $cor-primaria;
   }
 
   input {
-    width: 100%;
+    width: 94%;
     height: 48px;
     padding: 0 1rem;
     border: $borda-padrao;
@@ -31,5 +31,18 @@
     &::placeholder {
       color: #9ca3af;
     }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px #f4f4f5 inset;
+      -webkit-text-fill-color: $cor-primaria;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    &:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+    }
   }
 }
+

@@ -32,7 +32,7 @@ export default function CampoFlutuante<T extends string>({
                 value={valor ?? ""}
             >
                 <option value="" disabled>
-                    Selecione...
+                    Selecione
                 </option>
 
                 {itens.map((item) => (

@@ -11,10 +11,23 @@
     .pessoa-conteiner {
         background-color: #ededed;
         padding: 2rem;
-        border-radius: 12px;
+        border-radius: $radius-card;
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+
+        .separador-com-texto {
+            display: flex;
+            align-items: center;
+
+            &::before,
+            &::after {
+                content: "";
+                flex: 1;
+                height: 1px;
+                background-color: $cor-primaria;
+            }
+        }
         
         .linha {
             display: grid;
@@ -34,7 +47,6 @@
             display: flex;
             justify-content: flex-start;
             gap: 1rem;
-            margin-top: 1rem;
         
             .acoes {
                 cursor: pointer;
