@@ -21,8 +21,6 @@ export default function Campos({
   onChange
 }: PropsCampos) {
 
-  const frase = descricao ? `${descricao}...` : "";
-
   return (
     <div className="campo">
       <label htmlFor={nome}>{children}</label>
@@ -30,7 +28,7 @@ export default function Campos({
         type={tipo}
         name={nome}
         id={nome}
-        placeholder={frase}
+        placeholder={descricao}
         required={obrigatorio}
         value={valor}
         onChange={onChange}

@@ -1,22 +1,33 @@
 @use "../../styles/variaveis" as *;
 
-.botao{
-  display: flex;
+.botao {
+  display: inline-flex;
   align-items: center;
-  height: 48px;
+  justify-content: center;
+  height: 45px;
+  padding: 0 $padding-padrao;
+  gap: 0.5rem;
   background-color: $cor-primaria;
-  border-radius: $radius-padrao;
-  font-weight: 700;
-  font-size: $fonte-padrao;
-  padding: $padding-padrao;
-  border: none;
-  cursor: pointer;
   color: $cor-secundaria;
+  border: none;
+  border-radius: $radius-padrao;
+  font-size: $fonte-padrao;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
   box-shadow: $sombra-card;
-  transition: background .30s ease;
-  margin-top: $margin-padrao;
-  
+  transition: 
+    background-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+
+  margin: $margin-padrao 10px 0 0;
+
   &:hover {
     background-color: $cor-hover;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   }
 }
+

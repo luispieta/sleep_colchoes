@@ -4,6 +4,7 @@ $cor-hover: #797979;
 $cor-background-claro: #f8f8f8f2;
 $cor-sombra: #0000004d;
 $cor-descricao: #797979;
+$cor-borda: #dedee2;
 
 $sombra-card: 0 5px 5px #0000004d;
 
@@ -16,4 +17,4 @@ $fonte-padrao: 16px;
 $padding-padrao: 1rem;
 $margin-padrao: 20px;
 
-$borda-padrao: solid 2px $cor-primaria;
+$borda-padrao: solid 2px $cor-borda;

@@ -4,33 +4,32 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-top: $margin-padrao;
 
-
-  label {
-    font-size: $fonte-padrao;
+  label { 
+    font-size: 0.85rem;
     font-weight: 600;
     color: $cor-primaria;
   }
 
   input {
     width: 100%;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    background: #fff;
+    height: 48px;
+    padding: 0 1rem;
+    border: $borda-padrao;
     border-radius: $radius-padrao;
-    font-size: 0.95rem;
+    background-color: #f4f4f5;
     color: $cor-primaria;
-    transition: 0.2s ease;
+    font-size: 0.95rem;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
 
     &:focus {
-      border-color: $cor-primaria;
-      box-shadow: $sombra-card; 
+      background-color: #ffffff;
+      box-shadow: 0 0 0 2px rgba($cor-primaria, 0.15);
       outline: none;
     }
 
     &::placeholder {
-      color: $cor-descricao;
+      color: #9ca3af;
     }
   }
 }

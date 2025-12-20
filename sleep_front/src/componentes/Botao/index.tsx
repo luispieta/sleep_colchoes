@@ -11,6 +11,14 @@ interface PropsBotao {
 
 export default function Botao({children, tipo, onClick, icone}: PropsBotao) {
     return(
-        <button onClick={onClick} type={tipo} className="botao">{icone}{children}</button>    
+        <button 
+            onClick={onClick} 
+            type={tipo} 
+            className="botao">
+                {icone}
+                <p className="descricao">
+                    {children}
+                </p>
+        </button>    
     )
 }

@@ -24,7 +24,7 @@ export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
                         { cabecalho: "CPF/CNPJ" },
                         { cabecalho: "Telefone" },
                         { cabecalho: "Email" },
-                        { cabecalho: "Endereço Principal" },
+                        { cabecalho: "Cidade" },
                         { cabecalho: "Ações" }
                     ]}
                     data={pessoas}
