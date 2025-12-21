@@ -6,8 +6,7 @@ import MenuLateral from "../../../layouts/MenuLateral";
 import { Genero, GeneroLabel } from "../../../types/enums/Genero";
 import { useState } from "react";
 import "./cadastrarPessoa.scss"
-
-type Aba = "cadastroGerais";
+import Tab from "../../../layouts/Tab/indes";
 
 export default function CadastrarPessoa() {
   const [nome, setNome] = useState("");
@@ -23,7 +22,6 @@ export default function CadastrarPessoa() {
   const [uf, setUf] = useState("");
   const [cep, setCep] = useState("");
   const [logradouro, setLogradouro] = useState("");
-  const [abaAtiva, setAbaAtiva] = useState<Aba>("cadastroGerais");
 
   async function cadastrarPessoa(e: React.FormEvent) {
     e.preventDefault();
@@ -95,15 +93,10 @@ export default function CadastrarPessoa() {
     <div className="cadastro-pessoa">
       <MenuLateral />
 
-      <div className="tabs-cadastro">
-        <button
-          type="button"
-          className={`aba ${abaAtiva === "cadastroGerais" ? "ativa" : ""}`}
-          onClick={() => setAbaAtiva("cadastroGerais")}
-        >
-          Cadastro Gerais
-        </button>
-      </div>
+      <Tab abas={[    
+        { label: "Cadastro Gerais", rota: "/pessoa/cadastropessoa" },
+        ]}>
+      </Tab>
 
       <form className="pessoa-conteiner" onSubmit={cadastrarPessoa}>
         <div className="separador-com-texto">
