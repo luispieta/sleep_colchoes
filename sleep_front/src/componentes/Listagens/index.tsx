@@ -6,7 +6,6 @@ interface Colunas {
 }
 
 interface ListagensProps {
-    titulo: string;
     colunas: Colunas[];
     data: any[];
     renderizarLinha?: (item: any) => React.ReactNode; 

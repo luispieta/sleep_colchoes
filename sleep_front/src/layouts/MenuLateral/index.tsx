@@ -15,10 +15,10 @@ export default function () {
                 <MenuLateralLink to="/paginaprincipal">
                     <Icone icone={<BsHouse size={25}/>} /> Painel
                 </MenuLateralLink>
-                <MenuLateralLink to="/pedido/listagempedidos">
-                    <Icone icone={<BsCart4  size={25}/>} /> Pedidos
+                <MenuLateralLink to="/pedido/listagempedido">
+                    <Icone icone={<BsCart4 size={25}/>} /> Pedidos
                 </MenuLateralLink>
-                <MenuLateralLink to="/produto/listagemprodutos">
+                <MenuLateralLink to="/produto/listagemproduto">
                     <Icone icone={<BsBoxSeam size={25}/>} /> Produtos
                 </MenuLateralLink>
                 <MenuLateralLink to="/pessoa/listagempessoa">
@@ -30,7 +30,7 @@ export default function () {
             </nav>
             <nav className="menu-footer">
                 <MenuLateralLink to="">
-                    <Icone icone={ <BsDoorOpen  size={25}/>} /> Sair
+                    <Icone icone={ <BsDoorOpen size={25}/>} /> Sair
                 </MenuLateralLink>
             </nav>
         </aside>

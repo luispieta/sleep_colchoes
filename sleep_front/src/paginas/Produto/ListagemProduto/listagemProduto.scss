@@ -1,0 +1,56 @@
+@use "../../../styles/variaveis" as *;
+
+.cadastro-pessoa {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    padding: 2rem;
+    background-color: $cor-background-claro;
+    min-height: 100vh;
+    height: auto;
+
+    .pessoa-conteiner {
+        background-color: #ededed;
+        padding: 2rem;
+        border-radius: $radius-card;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .separador-com-texto {
+            display: flex;
+            align-items: center;
+
+            &::before,
+            &::after {
+                content: "";
+                flex: 1;
+                height: 1px;
+                background-color: $cor-primaria;
+            }
+        }
+        
+        .linha {
+            display: grid;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .linha-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .linha-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .linha-acoes {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+        
+            .acoes {
+                cursor: pointer;
+            }
+        }
+    }
+}

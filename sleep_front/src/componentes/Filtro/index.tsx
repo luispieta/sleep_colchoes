@@ -9,9 +9,10 @@ import { useState } from "react";
 interface PropsFiltro{
     rotina: string,
     label: string,
+    descricao: string
 }
 
-export default function Filtro({rotina}: PropsFiltro) {
+export default function Filtro({rotina, descricao}: PropsFiltro) {
 
     const [pesquisa, setPesquisa] = useState("");
 
@@ -37,7 +38,7 @@ export default function Filtro({rotina}: PropsFiltro) {
                 onChange={e => setPesquisa(e.target.value )}
             />
             <Link to={"/pessoa/cadastropessoa"}>
-                <Botao tipo={"button"} icone={<BsPlus size={25}/>}>Nova pessoa</Botao>
+                <Botao tipo={"button"} icone={<BsPlus size={25}/>}>{descricao}</Botao>
             </Link>
         </div>
     )
