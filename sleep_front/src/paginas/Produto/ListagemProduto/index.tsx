@@ -11,10 +11,17 @@ interface PropsListagemProduto {
 
 export default function ListagemProduto({produtos}: PropsListagemProduto) {
     return(
-        <div className="listagem-pessoa">
+        <div className="listagem-produto">
             <MenuLateral/>
-            <div className="pessoa-conteiner">
-                <Filtro rotina={"produto"} label={"Produto"} descricao={"Novo produto"} />
+            <div className="produto-conteiner">
+                <Filtro 
+                    placeholder={"produto"} 
+                    labelTexto={"Produto"} 
+                    idTexto={"produto"} 
+                    labelLista={"Tipo do produto"} 
+                    idLista={"tipo-produto"} 
+                    descricao={"Novo produto"} 
+                />
                 <Listagens
                     colunas={[
                         { cabecalho: "Código" },
@@ -22,7 +29,6 @@ export default function ListagemProduto({produtos}: PropsListagemProduto) {
                         { cabecalho: "Marca" },
                         { cabecalho: "Tipo do Produto" },
                         { cabecalho: "Medida" },
-                        { cabecalho: "Altura" },
                         { cabecalho: "Preço" },
                         { cabecalho: "Ações" }
                     ]}
@@ -33,9 +39,8 @@ export default function ListagemProduto({produtos}: PropsListagemProduto) {
                             <td>{produto.nome}</td>
                             <td>{produto.marca}</td>
                             <td>{produto.tipoProduto}</td>
-                            <td>{produto.medida}</td>
-                            <td>{produto.altura}</td>
-                            <td>{produto.preco}</td>
+                            <td>{produto.comprimento}x{produto.largura}x{produto.altura}</td>
+                            <td>R$ {produto.preco}</td>
                             <td className="acoes">
                                 <BsPencilFill size={16} /> <BsTrashFill size={16} />
                             </td>

@@ -12,8 +12,10 @@ public record DTOCadastrarProduto(
                                 @NotBlank
                                 String tipoProduto,
                                 @NotNull
-                                double medida,
-                                @NotBlank
+                                double comprimento,
+                                @NotNull
+                                double largura,
+                                @NotNull
                                 double altura,
                                 @NotNull
                                 double preco,

@@ -7,12 +7,15 @@ import Link from "../Link";
 import { useState } from "react";
 
 interface PropsFiltro{
-    rotina: string,
-    label: string,
+    placeholder: string,
+    labelTexto: string,
+    idTexto: string,
+    labelLista: string,
+    idLista: string,
     descricao: string
 }
 
-export default function Filtro({rotina, descricao}: PropsFiltro) {
+export default function Filtro({placeholder, descricao, labelTexto, idTexto, labelLista, idLista}: PropsFiltro) {
 
     const [pesquisa, setPesquisa] = useState("");
 
@@ -22,17 +25,17 @@ export default function Filtro({rotina, descricao}: PropsFiltro) {
                 tipo={"number"} 
                 nome={"codigo"} 
                 children={"Código"} 
-                descricao={`Digite o código do ${rotina}`}
+                descricao={`Digite o código do ${placeholder}`}
             />
             <Campos 
                 tipo={"text"} 
-                nome={"cliente"} 
-                children={"Cliente"} 
-                descricao={`Digite o nome do ${rotina}`}
+                nome={idTexto} 
+                children={labelTexto} 
+                descricao={`Digite o nome do ${placeholder}`}
             />
             <ListaSuspensa 
-                nome={"cidade"} 
-                children={"Cidade"} 
+                nome={idLista} 
+                children={labelLista} 
                 itens={[]}
                 valor={pesquisa}
                 onChange={e => setPesquisa(e.target.value )}

@@ -20,21 +20,23 @@ public class Produto {
     private String nome;
     private String marca;
     private String tipoProduto;
-    private double medida;
+    private double comprimento;
+    private double largura;
     private double altura;
     private double preco;
     private String cor;
     private String revestimento;
     private String densidade;
     private double cargaSuportada;
-    private String tratamentosEspeciais; //PESQUISAR TRATAMENTOS - ENUM
+    private String tratamentosEspeciais;
     private Boolean ativo;
 
     public Produto(DTOCadastrarProduto dados) {
         this.nome = dados.nome();
         this.marca = dados.marca();
         this.tipoProduto = dados.tipoProduto();
-        this.medida = dados.medida();
+        this.comprimento = dados.comprimento();
+        this.largura = dados.largura();
         this.altura = dados.altura();
         this.preco = dados.preco();
         this.cor = dados.cor();
@@ -49,7 +51,8 @@ public class Produto {
         this.nome = dados.nome();
         this.marca = dados.marca();
         this.tipoProduto = dados.tipoProduto();
-        this.medida = dados.medida();
+        this.comprimento = dados.comprimento();
+        this.largura = dados.largura();
         this.altura = dados.altura();
         this.preco = dados.preco();
         this.cor = dados.cor();
