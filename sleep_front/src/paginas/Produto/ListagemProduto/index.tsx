@@ -15,12 +15,13 @@ export default function ListagemProduto({produtos}: PropsListagemProduto) {
             <MenuLateral/>
             <div className="produto-conteiner">
                 <Filtro 
-                    placeholder={"produto"} 
-                    labelTexto={"Produto"} 
-                    idTexto={"produto"} 
-                    labelLista={"Tipo do produto"} 
-                    idLista={"tipo-produto"} 
+                    placeholder={"produto"}
+                    labelTexto={"Produto"}
+                    idTexto={"produto"}
+                    labelLista={"Tipo do produto"}
+                    idLista={"tipo-produto"}
                     descricao={"Novo produto"} 
+                    to={"/produto/cadastroproduto"}
                 />
                 <Listagens
                     colunas={[

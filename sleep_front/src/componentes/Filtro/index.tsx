@@ -12,10 +12,11 @@ interface PropsFiltro{
     idTexto: string,
     labelLista: string,
     idLista: string,
-    descricao: string
+    descricao: string,
+    to: string
 }
 
-export default function Filtro({placeholder, descricao, labelTexto, idTexto, labelLista, idLista}: PropsFiltro) {
+export default function Filtro({placeholder, descricao, labelTexto, idTexto, labelLista, idLista, to}: PropsFiltro) {
 
     const [pesquisa, setPesquisa] = useState("");
 
@@ -40,7 +41,7 @@ export default function Filtro({placeholder, descricao, labelTexto, idTexto, lab
                 valor={pesquisa}
                 onChange={e => setPesquisa(e.target.value )}
             />
-            <Link to={"/pessoa/cadastropessoa"}>
+            <Link to={to}>
                 <Botao tipo={"button"} icone={<BsPlus size={25}/>}>{descricao}</Botao>
             </Link>
         </div>

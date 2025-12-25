@@ -15,8 +15,15 @@ export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
         <div className="listagem-pessoa">
             <MenuLateral/>
             <div className="pessoa-conteiner">
-                <Filtro rotina={"cliente"} label={"Cliente"} descricao={"Nova pessoa"} />
-                <Listagens
+                <Filtro 
+                    placeholder={"cliente"}
+                    labelTexto={"Cliente"}
+                    idTexto={"cliente"}
+                    labelLista={"Cidade"}
+                    idLista={"cidade"}
+                    descricao={"Nova pessoa"} 
+                    to={"/pessoa/cadastropessoa"}
+                />                <Listagens
                     colunas={[
                         { cabecalho: "Código" },
                         { cabecalho: "Nome" },

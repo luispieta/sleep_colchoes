@@ -6,7 +6,7 @@ import MenuLateral from "../../../layouts/MenuLateral";
 import { Genero, GeneroLabel } from "../../../types/enums/Genero";
 import { useState } from "react";
 import "./cadastrarPessoa.scss"
-import Tab from "../../../layouts/Tab/indes";
+import Tab from "../../../layouts/Tab";
 
 export default function CadastrarPessoa() {
   const [nome, setNome] = useState("");
@@ -68,8 +68,8 @@ export default function CadastrarPessoa() {
 
       alert("Pessoa cadastrada com sucesso!");
     } catch (error) {
-      console.error(error);
-      alert("Erro no cadastro");
+        console.error(error);
+        alert("Erro no cadastro");
     }
   }
 
@@ -171,7 +171,7 @@ export default function CadastrarPessoa() {
         </div>
 
         <div className="separador-com-texto">
-          <h4>Endereço</h4>
+          <h4>Dados do Endereço</h4>
         </div>
 
         <div className="linha linha-2">

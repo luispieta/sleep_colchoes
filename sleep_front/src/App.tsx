@@ -5,6 +5,7 @@ import ListagemPessoa from "./paginas/Pessoa/ListagemPessoa"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CadastrarPessoa from "./paginas/Pessoa/CadastrarPessoa";
 import ListagemProduto from "./paginas/Produto/ListagemProduto";
+import CadastroProduto from "./paginas/Produto/CadastroProduto";
 
 export default function App() {
   
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/pessoa/listagempessoa" element={<ListagemPessoa pessoas={pessoas}/>}/>
           <Route path="/pessoa/cadastropessoa" element={<CadastrarPessoa />}/>
           <Route path="/produto/listagemproduto" element={<ListagemProduto produtos={produtos}/>}/>
+          <Route path="/produto/cadastroproduto" element={<CadastroProduto />}/>
         </Routes>
       </BrowserRouter>
     </>
