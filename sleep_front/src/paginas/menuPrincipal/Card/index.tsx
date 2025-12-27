@@ -1,25 +1,21 @@
-import { BsBoxSeam, BsCart4, BsPersonCircle } from "react-icons/bs";
-import Icone from "../../../componentes/Icone";
-import "./card.scss"
+import Link from "../../../componentes/Link";
+import "./card.scss";
 
-export default function Card () {
-    return(
-        <div className="card">
-            <div className="rotina">
-                <a href="#">
-                    <Icone icone={<BsCart4  size={50}/>} /> Pedido
-                </a>
+interface PropsCard {
+    to: string;
+    icone: React.ReactNode;
+    descricao: string;
+}
+
+export default function Card({ to, icone, descricao }: PropsCard) {
+    return (
+        <Link to={to}>
+            <div className="card">
+                <div className="rotina">
+                    {icone}
+                    <span>{descricao}</span>
+                </div>
             </div>
-            <div className="rotina">
-                <a href="#">
-                    <Icone icone={<BsBoxSeam size={50}/>} /> Produto
-                </a>
-            </div>
-            <div className="rotina">
-                <a href="#">
-                    <Icone icone={<BsPersonCircle size={50}/>}  /> Cliente
-                </a>
-            </div>
-        </div>        
-    )
+        </Link>
+    );
 }

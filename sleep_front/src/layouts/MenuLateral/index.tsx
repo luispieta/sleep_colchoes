@@ -1,5 +1,5 @@
 import Icone from "../../componentes/Icone" 
-import MenuLateralLink from "../../componentes/Link"
+import Link from "../../componentes/Link"
 import "./menuLateral.scss"
 import { BsBoxSeam, BsCart4, BsPersonCircle, BsGear, BsHouse, BsDoorOpen  } from "react-icons/bs"
 
@@ -12,26 +12,32 @@ export default function () {
                 <h2>Empresa ABC</h2>
             </div>
             <nav className="menu-nav">
-                <MenuLateralLink to="/paginaprincipal">
-                    <Icone icone={<BsHouse size={25}/>} /> Painel
-                </MenuLateralLink>
-                <MenuLateralLink to="/pedido/listagempedido">
-                    <Icone icone={<BsCart4 size={25}/>} /> Pedidos
-                </MenuLateralLink>
-                <MenuLateralLink to="/produto/listagemproduto">
-                    <Icone icone={<BsBoxSeam size={25}/>} /> Produtos
-                </MenuLateralLink>
-                <MenuLateralLink to="/pessoa/listagempessoa">
-                    <Icone icone={<BsPersonCircle size={25}/>} /> Clientes
-                </MenuLateralLink>
-                <MenuLateralLink to="/configuracoes">
-                    <Icone icone={<BsGear size={25}/>} /> Configurções
-                </MenuLateralLink>
+                <Link to="/paginaprincipal">
+                    <Icone icone={<BsHouse size={25}/>} /> 
+                    <span>Painel</span>
+                </Link>
+                <Link to="/pedido/listagempedido">
+                    <Icone icone={<BsCart4 size={25}/>} /> 
+                    <span>Pedidos</span>
+                </Link>
+                <Link to="/produto/listagemproduto">
+                    <Icone icone={<BsBoxSeam size={25}/>} /> 
+                    <span>Produtos</span>
+                </Link>
+                <Link to="/pessoa/listagempessoa">
+                    <Icone icone={<BsPersonCircle size={25}/>} /> 
+                    <span>Clientes</span>
+                </Link>
+                <Link to="/configuracoes">
+                    <Icone icone={<BsGear size={25}/>} /> 
+                    <span>Configurções</span>
+                </Link>
             </nav>
             <nav className="menu-footer">
-                <MenuLateralLink to="">
-                    <Icone icone={ <BsDoorOpen size={25}/>} /> Sair
-                </MenuLateralLink>
+                <Link to="/login">
+                    <Icone icone={ <BsDoorOpen size={25}/>} /> 
+                    <span>Sair</span>
+                </Link>
             </nav>
         </aside>
     )

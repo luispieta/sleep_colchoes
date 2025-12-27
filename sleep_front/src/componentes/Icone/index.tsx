@@ -5,7 +5,5 @@ interface PropsIcone {
 }
 
 export default function Icone({ icone }: PropsIcone) {
-  return( 
-      <span >{icone}</span>
-  )
+  return <span >{icone}</span>
 }

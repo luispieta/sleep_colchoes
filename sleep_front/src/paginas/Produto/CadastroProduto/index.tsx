@@ -85,8 +85,8 @@ export default function CadastroProduto() {
                         obrigatorio
                         valor={nome}
                         onChange={e => setNome(e.target.value)}
-                        >
-                    Nome
+                    >
+                        Nome*
                     </Campos>
         
                     <Campos
@@ -95,8 +95,8 @@ export default function CadastroProduto() {
                         descricao="Digite a marca"
                         valor={marca}
                         onChange={e => setMarca(e.target.value)}
-                        >
-                    Marca
+                    >
+                        Marca*
                     </Campos>
                 </div>
 
@@ -108,8 +108,8 @@ export default function CadastroProduto() {
                         obrigatorio
                         valor={comprimento}
                         onChange={e => setComprimento(e.target.value)}
-                        >
-                    Comprimento
+                    >
+                        Comprimento*
                     </Campos>
 
                     <Campos
@@ -119,8 +119,8 @@ export default function CadastroProduto() {
                         obrigatorio
                         valor={largura}
                         onChange={e => setLargura(e.target.value)}
-                        >
-                    Largura
+                    >
+                        Largura*
                     </Campos>
         
                     <Campos
@@ -130,8 +130,8 @@ export default function CadastroProduto() {
                         obrigatorio
                         valor={altura}
                         onChange={e => setAltura(e.target.value)}
-                        >
-                    Altura
+                    >
+                        Altura*
                     </Campos>
                 </div>
         
@@ -144,19 +144,18 @@ export default function CadastroProduto() {
                         obrigatorio
                         valor={preco}
                         onChange={e => setPreco(e.target.value)}
-                        >
-                    Preço
+                    >
+                        Preço*
                     </Campos>
         
                     <Campos
                         tipo="text"
                         nome="campo-cor"
                         descricao="Digite a cor"
-                        obrigatorio
                         valor={cor}
                         onChange={e => setCor(e.target.value)}
-                        >
-                    Cor
+                    >
+                        Cor
                     </Campos>
 
                     <Campos
@@ -167,7 +166,7 @@ export default function CadastroProduto() {
                         valor={tipoProduto}
                         onChange={e => setTipoProduto(e.target.value)}
                     >
-                        Tipo Produto
+                        Tipo Produto*
                     </Campos>
         
                 </div>        
@@ -177,22 +176,20 @@ export default function CadastroProduto() {
                         tipo="text"
                         nome="campo-revestimento"
                         descricao="Digite o revestimento"
-                        obrigatorio
                         valor={revestimento}
                         onChange={e => setRevestimento(e.target.value)}
-                        >
-                    Revestimento
+                    >
+                        Revestimento
                     </Campos>
         
                     <Campos
                         tipo="text"
                         nome="campo-densidade"
                         descricao="Digite a densidade"
-                        obrigatorio
                         valor={densidade}
                         onChange={e => setDensidade(e.target.value)}
-                        >
-                    Densidade
+                    >
+                        Densidade
                     </Campos>        
         
                 </div>
@@ -203,7 +200,6 @@ export default function CadastroProduto() {
                         tipo="number"
                         nome="campo-carga-suportada"
                         descricao="Digite a carga suportada"
-                        obrigatorio
                         valor={cargaSuportada}
                         onChange={e => setCargaSuportada(e.target.value)}
                     >
@@ -214,7 +210,6 @@ export default function CadastroProduto() {
                         tipo="text"
                         nome="campo-tratamentos-especiais"
                         descricao="Digite o tratamento especial"
-                        obrigatorio
                         valor={tratamentosEspeciais}
                         onChange={e => setTratamentosEspeciais(e.target.value)}
                     >

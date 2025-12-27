@@ -12,12 +12,12 @@
         border-radius: $radius-padrao;
         padding: $padding-padrao;
         font-size: $fonte-grande;
-        width: 1000px;
+        width: 100%;
+        font-weight: 600;
     }
 
     .atalho-main{
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
     }

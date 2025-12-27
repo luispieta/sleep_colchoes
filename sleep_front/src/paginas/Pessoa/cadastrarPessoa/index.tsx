@@ -111,17 +111,18 @@ export default function CadastrarPessoa() {
             valor={nome}
             onChange={e => setNome(e.target.value)}
           >
-            Nome
+            Nome*
           </Campos>
 
           <Campos
             tipo="text"
             nome="campo-cpf"
             descricao="000.000.000-00"
+            obrigatorio
             valor={cpf}
             onChange={e => setCpf(e.target.value)}
           >
-            CPF
+            CPF*
           </Campos>
         </div>
 
@@ -134,7 +135,7 @@ export default function CadastrarPessoa() {
             valor={telefone}
             onChange={e => setTelefone(e.target.value)}
           >
-            Telefone
+            Telefone*
           </Campos>
 
           <Campos
@@ -145,14 +146,15 @@ export default function CadastrarPessoa() {
             valor={email}
             onChange={e => setEmail(e.target.value)}
           >
-            E-mail
+            E-mail*
           </Campos>
         </div>
 
         <div className="linha linha-2">
           <ListaSuspensa
             nome="genero"
-            children="Gênero"
+            children="Gênero*"
+            obrigatorio
             itens={Object.values(Genero)}
             labels={GeneroLabel}
             valor={genero}
@@ -166,7 +168,7 @@ export default function CadastrarPessoa() {
             valor={dataNascimento}
             onChange={e => setDataNascimento(e.target.value)}
           >
-            Data de Nascimento
+            Data de Nascimento*
           </Campos>
         </div>
 
@@ -183,7 +185,7 @@ export default function CadastrarPessoa() {
             valor={cep}
             onChange={e => setCep(e.target.value)}
           >
-            CEP
+            CEP*
           </Campos>
 
           <Campos
@@ -194,7 +196,7 @@ export default function CadastrarPessoa() {
             valor={rua}
             onChange={e => setRua(e.target.value)}
           >
-            Rua
+            Rua*
           </Campos>
 
         </div>
@@ -208,7 +210,7 @@ export default function CadastrarPessoa() {
             valor={bairro}
             onChange={e => setBairro(e.target.value)}
           >
-            Bairro
+            Bairro*
           </Campos>
 
           <Campos
@@ -219,7 +221,7 @@ export default function CadastrarPessoa() {
             valor={numero}
             onChange={e => setNumero(e.target.value)}
           >
-            Número
+            Número*
           </Campos>        
 
           <Campos
@@ -230,7 +232,7 @@ export default function CadastrarPessoa() {
             valor={uf}
             onChange={e => setUf(e.target.value)}
           >
-            UF
+            UF*
           </Campos>
         </div>
 
@@ -243,7 +245,7 @@ export default function CadastrarPessoa() {
             valor={cidade}
             onChange={e => setCidade(e.target.value)}
           >
-            Cidade
+            Cidade*
           </Campos>  
 
           <Campos
@@ -254,7 +256,7 @@ export default function CadastrarPessoa() {
             valor={logradouro}
             onChange={e => setLogradouro(e.target.value)}
           >
-            Logradouro
+            Logradouro*
           </Campos>
         </div>
 
