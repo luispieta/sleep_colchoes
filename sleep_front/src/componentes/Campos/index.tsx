@@ -1,18 +1,20 @@
-import type { ReactNode } from "react"
-import "./campos.scss"
+import "./campos.scss";
+import { mascaras } from "./mascaras";
 
 interface PropsCampos {
-  tipo: string;
+  tipo?: React.HTMLInputTypeAttribute;
+  mascara?: keyof typeof mascaras;
   nome: string;
-  children: ReactNode;
+  children: string;
   descricao?: string;
   obrigatorio?: boolean;
-  valor?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  valor: string;
+  onChange: (value: string) => void;
 }
 
 export default function Campos({
-  tipo,
+  tipo = "text",
+  mascara,
   nome,
   children,
   descricao,
@@ -21,9 +23,22 @@ export default function Campos({
   onChange
 }: PropsCampos) {
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    if (mascara && mascaras[mascara]) {
+      onChange(mascaras[mascara](value));
+    } else {
+      onChange(value);
+    }
+  };
+
   return (
     <div className="campo">
-      <label htmlFor={nome}>{children}</label>
+      <label htmlFor={nome}>
+        {children} {obrigatorio && "*"}
+      </label>
+
       <input
         type={tipo}
         name={nome}
@@ -31,7 +46,12 @@ export default function Campos({
         placeholder={descricao}
         required={obrigatorio}
         value={valor}
-        onChange={onChange}
+        onChange={handleChange}
+        inputMode={
+          mascara === "cpf" || mascara === "cep" || mascara === "telefone"
+            ? "numeric"
+            : undefined
+        }
       />
     </div>
   );

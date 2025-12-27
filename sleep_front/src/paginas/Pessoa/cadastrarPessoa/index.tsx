@@ -1,4 +1,4 @@
-import { BsFileEarmark, BsFloppy } from "react-icons/bs";
+import { BsArrowLeftShort, BsFileEarmark, BsFloppy, BsPersonCircle } from "react-icons/bs";
 import Botao from "../../../componentes/Botao";
 import Campos from "../../../componentes/Campos";
 import ListaSuspensa from "../../../componentes/ListaSuspensa";
@@ -7,6 +7,8 @@ import { Genero, GeneroLabel } from "../../../types/enums/Genero";
 import { useState } from "react";
 import "./cadastrarPessoa.scss"
 import Tab from "../../../layouts/Tab";
+import Icone from "../../../componentes/Icone";
+import Link from "../../../componentes/Link";
 
 export default function CadastrarPessoa() {
   const [nome, setNome] = useState("");
@@ -93,9 +95,18 @@ export default function CadastrarPessoa() {
     <div className="cadastro-pessoa">
       <MenuLateral />
 
-      <Tab abas={[    
-        { label: "Cadastro Gerais", rota: "/pessoa/cadastropessoa" },
-        ]}>
+      <header className="cabecalho-cadastro">
+        <Link to={"/pessoa/listagempessoa"}>
+          <div className="icone-retornar">
+            <Icone icone={<BsArrowLeftShort size={30}/>} />
+          </div>
+        </Link>
+        <Icone icone={<BsPersonCircle size={40}/>} /> 
+        <span>Clientes</span>
+      </header>
+
+      <Tab abas={[
+        { label: "Cadastro Gerais", rota: "/pessoa/cadastropessoa" },]}>
       </Tab>
 
       <form className="pessoa-conteiner" onSubmit={cadastrarPessoa}>
@@ -109,9 +120,9 @@ export default function CadastrarPessoa() {
             descricao="Digite seu nome"
             obrigatorio
             valor={nome}
-            onChange={e => setNome(e.target.value)}
+            onChange={setNome}
           >
-            Nome*
+            Nome
           </Campos>
 
           <Campos
@@ -120,9 +131,10 @@ export default function CadastrarPessoa() {
             descricao="000.000.000-00"
             obrigatorio
             valor={cpf}
-            onChange={e => setCpf(e.target.value)}
+            onChange={setCpf}
+            mascara="cpf"
           >
-            CPF*
+            CPF
           </Campos>
         </div>
 
@@ -133,9 +145,10 @@ export default function CadastrarPessoa() {
             descricao="(00) 00000-0000"
             obrigatorio
             valor={telefone}
-            onChange={e => setTelefone(e.target.value)}
+            onChange={setTelefone}
+            mascara="telefone"
           >
-            Telefone*
+            Telefone
           </Campos>
 
           <Campos
@@ -144,16 +157,16 @@ export default function CadastrarPessoa() {
             descricao="Digite seu e-mail"
             obrigatorio
             valor={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={setEmail}
           >
-            E-mail*
+            E-mail
           </Campos>
         </div>
 
         <div className="linha linha-2">
           <ListaSuspensa
             nome="genero"
-            children="Gênero*"
+            children="Gênero *"
             obrigatorio
             itens={Object.values(Genero)}
             labels={GeneroLabel}
@@ -166,9 +179,9 @@ export default function CadastrarPessoa() {
             nome="campo-data-nascimento"
             obrigatorio
             valor={dataNascimento}
-            onChange={e => setDataNascimento(e.target.value)}
+            onChange={setDataNascimento}
           >
-            Data de Nascimento*
+            Data de Nascimento
           </Campos>
         </div>
 
@@ -183,9 +196,10 @@ export default function CadastrarPessoa() {
             descricao="00000-000"
             obrigatorio
             valor={cep}
-            onChange={e => setCep(e.target.value)}
+            onChange={setCep}
+            mascara="cep"
           >
-            CEP*
+            CEP
           </Campos>
 
           <Campos
@@ -194,9 +208,9 @@ export default function CadastrarPessoa() {
             descricao="Digite sua rua"
             obrigatorio
             valor={rua}
-            onChange={e => setRua(e.target.value)}
+            onChange={setRua}
           >
-            Rua*
+            Rua
           </Campos>
 
         </div>
@@ -208,9 +222,9 @@ export default function CadastrarPessoa() {
             descricao="Digite o bairro"
             obrigatorio
             valor={bairro}
-            onChange={e => setBairro(e.target.value)}
+            onChange={setBairro}
           >
-            Bairro*
+            Bairro
           </Campos>
 
           <Campos
@@ -219,9 +233,9 @@ export default function CadastrarPessoa() {
             descricao="Digite o número"
             obrigatorio
             valor={numero}
-            onChange={e => setNumero(e.target.value)}
+            onChange={setNumero}
           >
-            Número*
+            Número
           </Campos>        
 
           <Campos
@@ -230,9 +244,9 @@ export default function CadastrarPessoa() {
             descricao="UF"
             obrigatorio
             valor={uf}
-            onChange={e => setUf(e.target.value)}
+            onChange={setUf}
           >
-            UF*
+            UF
           </Campos>
         </div>
 
@@ -243,9 +257,9 @@ export default function CadastrarPessoa() {
             descricao="Digite a cidade"
             obrigatorio
             valor={cidade}
-            onChange={e => setCidade(e.target.value)}
+            onChange={setCidade}
           >
-            Cidade*
+            Cidade
           </Campos>  
 
           <Campos
@@ -254,9 +268,9 @@ export default function CadastrarPessoa() {
             descricao="Digite o logradouro"
             obrigatorio
             valor={logradouro}
-            onChange={e => setLogradouro(e.target.value)}
+            onChange={setLogradouro}
           >
-            Logradouro*
+            Logradouro
           </Campos>
         </div>
 

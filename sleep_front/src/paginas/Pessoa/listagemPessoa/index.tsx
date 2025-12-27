@@ -23,7 +23,8 @@ export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
                     idLista={"cidade"}
                     descricao={"Nova pessoa"} 
                     to={"/pessoa/cadastropessoa"}
-                />                <Listagens
+                />                
+                <Listagens
                     colunas={[
                         { cabecalho: "Código" },
                         { cabecalho: "Nome" },
