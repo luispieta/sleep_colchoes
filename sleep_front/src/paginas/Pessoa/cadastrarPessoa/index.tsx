@@ -9,6 +9,7 @@ import "./cadastrarPessoa.scss"
 import Tab from "../../../layouts/Tab";
 import Icone from "../../../componentes/Icone";
 import Link from "../../../componentes/Link";
+import { viaCep } from "../../../services/viaCep";
 
 export default function CadastrarPessoa() {
   const [nome, setNome] = useState("");
@@ -198,6 +199,14 @@ export default function CadastrarPessoa() {
             valor={cep}
             onChange={setCep}
             mascara="cep"
+            onBlur={async () => {
+              const endereco = await viaCep(cep);
+
+              setRua(endereco.logradouro);
+              setBairro(endereco.bairro);
+              setCidade(endereco.localidade);
+              setUf(endereco.uf);
+            }}
           >
             CEP
           </Campos>

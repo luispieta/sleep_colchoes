@@ -16,7 +16,7 @@ export default function Listagens({
     data,
     renderizarLinha
 }: ListagensProps) {
-
+    
     return (
         <table className="tabela">
             <thead>

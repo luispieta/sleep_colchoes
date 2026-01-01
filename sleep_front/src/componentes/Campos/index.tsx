@@ -10,6 +10,7 @@ interface PropsCampos {
   obrigatorio?: boolean;
   valor: string;
   onChange: (value: string) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 export default function Campos({
@@ -20,7 +21,8 @@ export default function Campos({
   descricao,
   obrigatorio,
   valor,
-  onChange
+  onChange,
+  onBlur
 }: PropsCampos) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,6 +54,7 @@ export default function Campos({
             ? "numeric"
             : undefined
         }
+        onBlur={onBlur}
       />
     </div>
   );

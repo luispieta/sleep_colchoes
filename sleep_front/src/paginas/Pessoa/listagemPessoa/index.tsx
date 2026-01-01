@@ -46,7 +46,7 @@ export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
                                 {pessoa.enderecoEntrega?.cidade} - {pessoa.enderecoEntrega?.uf}
                             </td>
                             <td className="acoes">
-                                <BsPencilFill size={16} /> <BsTrashFill size={16} />
+                                <BsPencilFill size={16} />
                             </td>
                         </tr>
                     )}
