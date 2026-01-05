@@ -53,7 +53,7 @@ public class PessoaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity detalhar(@PathVariable Long id) {
+    public ResponseEntity detalhar(@PathVariable("id") Long id) {
         var pessoa = repository.getReferenceById(id);
         return ResponseEntity.ok(new DTODetalhamentoPessoa(pessoa));
     }

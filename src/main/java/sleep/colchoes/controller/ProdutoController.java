@@ -56,7 +56,7 @@ public class ProdutoController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity excluir(//Serve para informar o id na URL
-                                    @PathVariable Long id) {
+                                  @PathVariable("id") Long id) {
         var produto = repository.getReferenceById(id);
         produto.excluir();
 

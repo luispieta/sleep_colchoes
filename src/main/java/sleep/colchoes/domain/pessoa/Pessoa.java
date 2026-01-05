@@ -1,7 +1,6 @@
 package sleep.colchoes.domain.pessoa;
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -70,10 +69,10 @@ public class Pessoa {
             this.dataNascimento = dados.dataNascimento();
         }
         if(dados.enderecoEntrega() != null) {
-            this.enderecoEntrega.atualizar(dados.enderecoEntrega());
+            this.enderecoEntrega.atualizarInformacoes(dados.enderecoEntrega());
         }
         if(dados.enderecoCobranca() != null) {
-            this.enderecoCobranca.atualizar(dados.enderecoCobranca());
+            this.enderecoCobranca.atualizarInformacoes(dados.enderecoCobranca());
         }
 
     }

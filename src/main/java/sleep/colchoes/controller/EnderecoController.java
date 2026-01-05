@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import sleep.colchoes.domain.endereco.*;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/enderecos")
 public class EnderecoController {
@@ -38,13 +39,13 @@ public class EnderecoController {
     @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid DTOAtualizarEndereco dados) {
         var endereco = repository.getReferenceById(dados.id());
-        endereco.atualizar(dados);
+        endereco.atualizarInformacoes(dados);
         return ResponseEntity.ok(new DTODetalhamentoEndereco(endereco));
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity detalhar(@PathVariable Long id) {
+    public ResponseEntity detalhar(@PathVariable("id") Long id) {
         var endereco = repository.getReferenceById(id);
         return ResponseEntity.ok(new DTODetalhamentoEndereco(endereco));
     }
