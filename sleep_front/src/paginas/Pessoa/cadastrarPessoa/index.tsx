@@ -4,12 +4,13 @@ import Campos from "../../../componentes/Campos";
 import ListaSuspensa from "../../../componentes/ListaSuspensa";
 import MenuLateral from "../../../layouts/MenuLateral";
 import { Genero, GeneroLabel } from "../../../types/enums/Genero";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./cadastrarPessoa.scss"
 import Tab from "../../../layouts/Tab";
 import Icone from "../../../componentes/Icone";
 import Link from "../../../componentes/Link";
 import { viaCep } from "../../../services/viaCep";
+import { useParams } from "react-router-dom";
 
 export default function CadastrarPessoa() {
   const [nome, setNome] = useState("");
@@ -25,9 +26,38 @@ export default function CadastrarPessoa() {
   const [uf, setUf] = useState("");
   const [cep, setCep] = useState("");
   const [logradouro, setLogradouro] = useState("");
+  const { id } = useParams<{ id: string }>()
+  const isEdicao = !!id
 
-  async function cadastrarPessoa(e: React.FormEvent) {
-    e.preventDefault();
+  useEffect(() => {
+    if (!id) return
+
+    async function carregarPessoa() {
+      const response = await fetch(`http://localhost:8090/pessoas/${id}`)
+      const data = await response.json()
+
+      setNome(data.nome ?? "")
+      setCpf(data.cpf ?? "")
+      setTelefone(data.telefone ?? "")
+      setEmail(data.email ?? "")
+      setGenero(data.genero ?? "")
+      setDataNascimento(data.dataNascimento ?? "")
+
+      setRua(data.enderecoEntrega?.rua ?? "")
+      setNumero(data.enderecoEntrega?.numero ?? "")
+      setCidade(data.enderecoEntrega?.cidade ?? "")
+      setBairro(data.enderecoEntrega?.bairro ?? "")
+      setUf(data.enderecoEntrega?.uf ?? "")
+      setCep(data.enderecoEntrega?.cep ?? "")
+      setLogradouro(data.enderecoEntrega?.logradouro ?? "")
+    }
+
+    carregarPessoa()
+  }, [id])
+
+
+  async function salvarPessoa(e: React.FormEvent) {
+    e.preventDefault()
 
     const payload = {
       nome,
@@ -36,7 +66,6 @@ export default function CadastrarPessoa() {
       email,
       genero,
       dataNascimento,
-
       enderecoEntrega: {
         rua,
         numero,
@@ -46,7 +75,6 @@ export default function CadastrarPessoa() {
         cep,
         logradouro,
       },
-
       enderecoCobranca: {
         rua,
         numero,
@@ -56,23 +84,28 @@ export default function CadastrarPessoa() {
         cep,
         logradouro,
       },
-    };
+    }
+
+    const url = isEdicao
+      ? `http://localhost:8090/pessoas/${id}`
+      : "http://localhost:8090/pessoas"
+
+    const method = isEdicao ? "PUT" : "POST"
 
     try {
-      const response = await fetch("http://localhost:8090/pessoas", {
-        method: "POST",
+      const response = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
-      });
+      })
 
       if (!response.ok) {
         throw new Error("Erro ao cadastrar pessoa");
       }
-
-      alert("Pessoa cadastrada com sucesso!");
-    } catch (error) {
-        console.error(error);
-        alert("Erro no cadastro");
+      
+      alert(isEdicao ? "Pessoa atualizada!" : "Pessoa cadastrada!")
+    } catch {
+      alert("Erro ao salvar pessoa")
     }
   }
 
@@ -110,7 +143,7 @@ export default function CadastrarPessoa() {
         { label: "Cadastro Gerais", rota: "/pessoa/cadastropessoa" },]}>
       </Tab>
 
-      <form className="pessoa-conteiner" onSubmit={cadastrarPessoa}>
+      <form className="pessoa-conteiner" onSubmit={salvarPessoa}>
         <div className="separador-com-texto">
           <h4>Dados do Cliente</h4>
         </div>        

@@ -38,7 +38,7 @@ public class EnderecoController {
     @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid DTOAtualizarEndereco dados) {
         var endereco = repository.getReferenceById(dados.id());
-        endereco.atualizarInformacoes(dados);
+        endereco.atualizar(dados);
         return ResponseEntity.ok(new DTODetalhamentoEndereco(endereco));
 
     }

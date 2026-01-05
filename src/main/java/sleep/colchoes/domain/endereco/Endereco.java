@@ -35,7 +35,7 @@ public class Endereco {
         this.logradouro = dados.logradouro();
     }
 
-    public void atualizarInformacoes(DTOAtualizarEndereco dados) {
+    public void atualizar(DTOAtualizarEndereco dados) {
         if(dados.rua() != null) {
             this.rua = dados.rua();
         }

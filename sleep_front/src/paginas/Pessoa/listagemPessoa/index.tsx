@@ -1,9 +1,10 @@
-import { BsPencilFill, BsTrashFill } from "react-icons/bs"
+import { BsPencilFill } from "react-icons/bs"
 import "./listagemPessoa.scss"
 import type { PessoaData } from "../../../types/pessoa/PessoaData"
 import MenuLateral from "../../../layouts/MenuLateral"
 import Listagens from "../../../componentes/Listagens"
 import Filtro from "../../../componentes/Filtro"
+import { useNavigate } from "react-router-dom"
 
 interface PropsListagemPessoa {
     pessoas: PessoaData[],
@@ -11,6 +12,13 @@ interface PropsListagemPessoa {
 }
 
 export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
+
+    const navigate = useNavigate();
+
+    function editarPessoa(id: number) {
+        navigate(`/pessoa/cadastropessoa/${id}`);
+    }
+
     return(
         <div className="listagem-pessoa">
             <MenuLateral/>
@@ -46,7 +54,10 @@ export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
                                 {pessoa.enderecoEntrega?.cidade} - {pessoa.enderecoEntrega?.uf}
                             </td>
                             <td className="acoes">
-                                <BsPencilFill size={16} />
+                                <BsPencilFill 
+                                    size={16} 
+                                    onClick={() => editarPessoa(pessoa.id)}
+                                />
                             </td>
                         </tr>
                     )}

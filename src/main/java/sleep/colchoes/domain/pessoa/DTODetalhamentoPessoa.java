@@ -1,14 +1,15 @@
 package sleep.colchoes.domain.pessoa;
 
+import sleep.colchoes.domain.endereco.DTODetalhamentoEndereco;
 import java.time.LocalDate;
 
 public record DTODetalhamentoPessoa(Long id, String nome, String cpf, String telefone, String email, Genero genero,
-                                    LocalDate dataNascimento, Long enderecoEntrega, Long enderecoCobranca, Boolean ativo) {
+                                    LocalDate dataNascimento, DTODetalhamentoEndereco enderecoEntrega, DTODetalhamentoEndereco enderecoCobranca, Boolean ativo) {
 
     public DTODetalhamentoPessoa(Pessoa pessoa) {
         this(pessoa.getId(), pessoa.getNome(), pessoa.getCpf(), pessoa.getTelefone(), pessoa.getEmail(),
-                pessoa.getGenero(), pessoa.getDataNascimento(), pessoa.getEnderecoEntrega().getId(),
-                pessoa.getEnderecoCobranca().getId(), pessoa.getAtivo());
+                pessoa.getGenero(), pessoa.getDataNascimento(), new DTODetalhamentoEndereco(pessoa.getEnderecoEntrega()),
+                new DTODetalhamentoEndereco(pessoa.getEnderecoCobranca()), pessoa.getAtivo());
     }
 
 }

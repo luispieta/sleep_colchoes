@@ -1,6 +1,7 @@
 package sleep.colchoes.domain.pessoa;
 
 import jakarta.validation.constraints.NotNull;
+import sleep.colchoes.domain.endereco.DTOAtualizarEndereco;
 import sleep.colchoes.domain.endereco.Endereco;
 import java.time.LocalDate;
 
@@ -13,7 +14,7 @@ public record DTOAtualizarPessoa(
                                 String email,
                                 Genero genero,
                                 LocalDate dataNascimento,
-                                Endereco enderecoEntrega,
-                                Endereco enderecoCobranca) {
+                                DTOAtualizarEndereco enderecoEntrega,
+                                DTOAtualizarEndereco enderecoCobranca) {
 
 }

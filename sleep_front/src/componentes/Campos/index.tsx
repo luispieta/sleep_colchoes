@@ -47,7 +47,7 @@ export default function Campos({
         id={nome}
         placeholder={descricao}
         required={obrigatorio}
-        value={valor}
+        value={valor ?? ""}
         onChange={handleChange}
         inputMode={
           mascara === "cpf" || mascara === "cep" || mascara === "telefone"

@@ -69,11 +69,11 @@ public class Pessoa {
         if(dados.dataNascimento() != null) {
             this.dataNascimento = dados.dataNascimento();
         }
-        if(dados.enderecoCobranca() != null) {
-            this.enderecoCobranca = dados.enderecoCobranca();
-        }
         if(dados.enderecoEntrega() != null) {
-            this.enderecoEntrega = dados.enderecoEntrega();
+            this.enderecoEntrega.atualizar(dados.enderecoEntrega());
+        }
+        if(dados.enderecoCobranca() != null) {
+            this.enderecoCobranca.atualizar(dados.enderecoCobranca());
         }
 
     }
