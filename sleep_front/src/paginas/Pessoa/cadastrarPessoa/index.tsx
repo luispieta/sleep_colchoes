@@ -55,7 +55,6 @@ export default function CadastrarPessoa() {
     carregarPessoa()
   }, [id])
 
-
   async function salvarPessoa(e: React.FormEvent) {
     e.preventDefault()
 

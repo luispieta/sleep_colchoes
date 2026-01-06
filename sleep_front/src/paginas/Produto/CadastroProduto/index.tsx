@@ -2,10 +2,11 @@ import { BsArrowLeftShort, BsBoxSeam, BsFileEarmark, BsFloppy } from "react-icon
 import Botao from "../../../componentes/Botao";
 import Campos from "../../../componentes/Campos";
 import MenuLateral from "../../../layouts/MenuLateral";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "../../../componentes/Link";
 import Icone from "../../../componentes/Icone";
 import "./cadastroProduto.scss"
+import { useParams } from "react-router-dom";
 
 export default function CadastroProduto() {
     const [nome, setNome] = useState("");
@@ -20,6 +21,33 @@ export default function CadastroProduto() {
     const [densidade, setDensidade] = useState("");
     const [cargaSuportada, setCargaSuportada] = useState("");
     const [tratamentosEspeciais, setTratamentosEspeciais] = useState("");
+    const { id } = useParams<{ id: string }>()
+    const isEdicao = !!id
+
+    useEffect(() => {
+        if (!id) return
+
+        async function carregarProduto() {
+            const response = await fetch(`http://localhost:8090/produtos/${id}`)
+            const data = await response.json()
+
+            setNome(data.nome ?? "")
+            setMarca(data.marca ?? "")
+            setTipoProduto(data.tipoProduto ?? "")
+            setComprimento(data.comprimento ?? "")
+            setLargura(data.largura ?? "")
+            setAltura(data.altura ?? "")
+            setPreco(data.preco ?? "")
+            setCor(data.cor ?? "")
+            setRevestimento(data.revestimento ?? "")
+            setDensidade(data.densidade ?? "")
+            setCargaSuportada(data.cargaSuportada ?? "")
+            setTratamentosEspeciais(data.tratamentosEspeciais ?? "")
+
+        }
+
+        carregarProduto()
+    }, [id])
 
     async function cadastrarProduto(e: React.FormEvent) {
         e.preventDefault();
@@ -39,9 +67,15 @@ export default function CadastroProduto() {
             tratamentosEspeciais
         }
 
+        const url = isEdicao
+            ? `http://localhost:8090/produtos/${id}`
+            : "http://localhost:8090/produtos"
+
+    const method = isEdicao ? "PUT" : "POST"
+
         try {
-            const response = await fetch("http://localhost:8090/produtos", {
-                method: "POST",
+            const response = await fetch(url, {
+                method,
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
             });

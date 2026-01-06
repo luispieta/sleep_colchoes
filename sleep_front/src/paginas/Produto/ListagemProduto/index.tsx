@@ -1,15 +1,23 @@
-import { BsPencilFill, BsTrashFill } from "react-icons/bs"
+import { BsPencilFill } from "react-icons/bs"
 import "./listagemProduto.scss"
 import MenuLateral from "../../../layouts/MenuLateral"
 import Listagens from "../../../componentes/Listagens"
 import Filtro from "../../../componentes/Filtro"
 import type { ProdutoData } from "../../../types/produto/ProdutoData"
+import { useNavigate } from "react-router-dom"
 
 interface PropsListagemProduto {
     produtos: ProdutoData[]
 }
 
 export default function ListagemProduto({produtos}: PropsListagemProduto) {
+
+    const navigate = useNavigate();
+
+    function editarProduto(id: number) {
+        navigate(`/produto/cadastroproduto/${id}`);
+    }
+
     return(
         <div className="listagem-produto">
             <MenuLateral/>
@@ -43,7 +51,10 @@ export default function ListagemProduto({produtos}: PropsListagemProduto) {
                             <td>{produto.comprimento}x{produto.largura}x{produto.altura}</td>
                             <td>R$ {produto.preco}</td>
                             <td className="acoes">
-                                <BsPencilFill size={16} /> <BsTrashFill size={16} />
+                                <BsPencilFill 
+                                    size={16}
+                                    onClick={() => editarProduto(produto.id)}
+                                 />
                             </td>
                         </tr>
                     )}
