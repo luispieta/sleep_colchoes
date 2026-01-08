@@ -34,6 +34,7 @@ public class SecurityConfigurations {
                 )
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers("/login").permitAll();
+                    req.requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll();
                     req.anyRequest().authenticated();
                 })
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

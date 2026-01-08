@@ -47,7 +47,6 @@ public class Produto {
     }
 
     public void atualizarInformacoes(DTOAtualizarProduto dados) {
-        this.id = dados.id();
         this.nome = dados.nome();
         this.marca = dados.marca();
         this.tipoProduto = dados.tipoProduto();

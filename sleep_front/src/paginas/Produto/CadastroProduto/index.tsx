@@ -62,7 +62,7 @@ export default function CadastroProduto() {
         carregarProduto()
     }, [id])
 
-    async function cadastrarProduto(e: React.FormEvent) {
+    async function salvarProduto(e: React.FormEvent) {
         e.preventDefault();
 
         const payload = {
@@ -87,9 +87,14 @@ export default function CadastroProduto() {
     const method = isEdicao ? "PUT" : "POST"
 
         try {
+            const token = localStorage.getItem("token");
+
             const response = await fetch(url, {
                 method,
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+            },
                 body: JSON.stringify(payload),
             });
 
@@ -133,7 +138,7 @@ export default function CadastroProduto() {
                 <span>Produtos</span>
             </header>
     
-            <form className="produto-conteiner" onSubmit={cadastrarProduto}>
+            <form className="produto-conteiner" onSubmit={salvarProduto}>
                 <div className="separador-com-texto">
                     <h4>Dados do Produto</h4>
                 </div>        
@@ -153,6 +158,7 @@ export default function CadastroProduto() {
                         tipo="text"
                         nome="campo-marca"
                         descricao="Digite a marca"
+                        obrigatorio
                         valor={marca}
                         onChange={setMarca}
                     >

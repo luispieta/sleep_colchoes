@@ -36,14 +36,16 @@ public class ProdutoController {
 
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DTOAtualizarProduto dados) {
-        var produto = repository.getReferenceById(dados.id());
+    public ResponseEntity atualizar(
+            @PathVariable Long id,
+            @RequestBody @Valid DTOAtualizarProduto dados) {
+
+        var produto = repository.getReferenceById(id);
         produto.atualizarInformacoes(dados);
 
         return ResponseEntity.ok(new DTODetalhamentoProduto(produto));
-
     }
 
     @GetMapping("/{id}")

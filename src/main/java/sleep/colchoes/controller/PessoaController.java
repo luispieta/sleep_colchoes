@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import sleep.colchoes.domain.pessoa.*;
+import sleep.colchoes.domain.produto.DTOAtualizarProduto;
+import sleep.colchoes.domain.produto.DTODetalhamentoProduto;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -34,13 +36,16 @@ public class PessoaController {
         return ResponseEntity.ok(page);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DTOAtualizarPessoa dados) {
-        var pessoa = repository.getReferenceById(dados.id());
-        pessoa.atualizarInformacoes(dados);
-        return ResponseEntity.ok(new DTODetalhamentoPessoa(pessoa));
+    public ResponseEntity atualizar(
+            @PathVariable Long id,
+            @RequestBody @Valid DTOAtualizarPessoa dados) {
 
+        var pessoa = repository.getReferenceById(id);
+        pessoa.atualizarInformacoes(dados);
+
+        return ResponseEntity.ok(new DTODetalhamentoPessoa(pessoa));
     }
 
     @DeleteMapping("/{id}")

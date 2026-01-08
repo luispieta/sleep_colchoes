@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import sleep.colchoes.domain.enums.SimNao;
 
-public record DTOAtualizarProduto(Long id,
+public record DTOAtualizarProduto(
                                   @NotBlank
                                   String nome,
                                   @NotBlank
