@@ -28,24 +28,37 @@ export default function CadastroProduto() {
         if (!id) return
 
         async function carregarProduto() {
-            const response = await fetch(`http://localhost:8090/produtos/${id}`)
-            const data = await response.json()
+            const token = localStorage.getItem("token");
+            if (!token) return;
 
-            setNome(data.nome ?? "")
-            setMarca(data.marca ?? "")
-            setTipoProduto(data.tipoProduto ?? "")
-            setComprimento(data.comprimento ?? "")
-            setLargura(data.largura ?? "")
-            setAltura(data.altura ?? "")
-            setPreco(data.preco ?? "")
-            setCor(data.cor ?? "")
-            setRevestimento(data.revestimento ?? "")
-            setDensidade(data.densidade ?? "")
-            setCargaSuportada(data.cargaSuportada ?? "")
-            setTratamentosEspeciais(data.tratamentosEspeciais ?? "")
+            const response = await fetch(
+                `http://localhost:8090/produtos/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
 
+            if (!response.ok) {
+                throw new Error("Erro ao carregar produto");
+            }
+
+            const data = await response.json();
+
+            setNome(data.nome ?? "");
+            setMarca(data.marca ?? "");
+            setTipoProduto(data.tipoProduto ?? "");
+            setComprimento(data.comprimento ?? "");
+            setLargura(data.largura ?? "");
+            setAltura(data.altura ?? "");
+            setPreco(data.preco ?? "");
+            setCor(data.cor ?? "");
+            setRevestimento(data.revestimento ?? "");
+            setDensidade(data.densidade ?? "");
+            setCargaSuportada(data.cargaSuportada ?? "");
+            setTratamentosEspeciais(data.tratamentosEspeciais ?? "");
         }
-
         carregarProduto()
     }, [id])
 

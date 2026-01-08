@@ -1,4 +1,4 @@
-//package sleep.colchoes.infra.security;
-//
-//public record DTOTokenJWT(String token) {
-//}
+package sleep.colchoes.infra.security;
+
+public record DTOTokenJWT(String token) {
+}
