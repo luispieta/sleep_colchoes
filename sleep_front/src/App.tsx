@@ -7,34 +7,13 @@ import CadastrarPessoa from "./paginas/Pessoa/cadastrarPessoa";
 import ListagemProduto from "./paginas/Produto/ListagemProduto";
 import CadastroProduto from "./paginas/Produto/CadastroProduto";
 import Login from "./paginas/Login";
+import { buscarProdutos } from "./services/produtoService";
+import { buscarPessoas } from "./services/pessoaService";
 
 export default function App() {
   
-  const api = "http://localhost:8090";
-
   const [pessoa, setPessoa] = useState([]);
   const [produto, setProduto] = useState([]);
-
-  async function buscarProdutos() {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      throw new Error("Token não encontrado");
-    }
-
-    const response = await fetch(`${api}/produtos`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Erro ${response.status} ao buscar produtos`);
-    }
-
-    return response.json();
-  }
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -48,27 +27,6 @@ export default function App() {
         alert("Sessão expirada, faça login novamente");
       });
   }, []);
-
-  async function buscarPessoas() {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      throw new Error("Token não encontrado");
-    }
-
-    const response = await fetch(`${api}/pessoas`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Erro ${response.status} ao buscar produtos`);
-    }
-
-    return response.json();
-  }
 
   useEffect(() => {
     const token = localStorage.getItem("token");

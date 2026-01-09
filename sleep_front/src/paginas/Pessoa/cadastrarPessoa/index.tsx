@@ -11,6 +11,7 @@ import Icone from "../../../componentes/Icone";
 import Link from "../../../componentes/Link";
 import { viaCep } from "../../../services/viaCep";
 import { useParams } from "react-router-dom";
+import { salvarPessoa } from "../../../services/pessoaService";
 
 export default function CadastrarPessoa() {
   const [nome, setNome] = useState("");
@@ -27,107 +28,47 @@ export default function CadastrarPessoa() {
   const [cep, setCep] = useState("");
   const [logradouro, setLogradouro] = useState("");
   const { id } = useParams<{ id: string }>()
-  const isEdicao = !!id
-
 
   useEffect(() => {
-      if (!id) return
+    if (!id) return
 
-      async function carregarPessoa() {
-          const token = localStorage.getItem("token");
-          if (!token) return;
+    async function carregarPessoa() {
+      const token = localStorage.getItem("token");
+      if (!token) return;
 
-          const response = await fetch(
-              `http://localhost:8090/pessoas/${id}`,
-              {
-                  headers: {
-                      Authorization: `Bearer ${token}`,
-                  },
-              }
-          );
-
-          if (!response.ok) {
-              throw new Error("Erro ao carregar pessoa");
+      const response = await fetch(
+          `http://localhost:8090/pessoas/${id}`,
+          {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
           }
+      );
 
-          const data = await response.json();
-
-          setNome(data.nome ?? "")
-          setCpf(data.cpf ?? "")
-          setTelefone(data.telefone ?? "")
-          setEmail(data.email ?? "")
-          setGenero(data.genero ?? "")
-          setDataNascimento(data.dataNascimento ?? "")
-
-          setRua(data.enderecoEntrega?.rua ?? "")
-          setNumero(data.enderecoEntrega?.numero ?? "")
-          setCidade(data.enderecoEntrega?.cidade ?? "")
-          setBairro(data.enderecoEntrega?.bairro ?? "")
-          setUf(data.enderecoEntrega?.uf ?? "")
-          setCep(data.enderecoEntrega?.cep ?? "")
-          setLogradouro(data.enderecoEntrega?.logradouro ?? "")
+      if (!response.ok) {
+          throw new Error("Erro ao carregar pessoa");
       }
-      carregarPessoa()
-  }, [id])
 
-  async function salvarPessoa(e: React.FormEvent) {
-    e.preventDefault()
+      const data = await response.json();
 
-    const payload = {
-      nome,
-      cpf,
-      telefone,
-      email,
-      genero,
-      dataNascimento,
-      enderecoEntrega: {
-        rua,
-        numero,
-        cidade,
-        bairro,
-        uf,
-        cep,
-        logradouro,
-      },
-      enderecoCobranca: {
-        rua,
-        numero,
-        cidade,
-        bairro,
-        uf,
-        cep,
-        logradouro,
-      },
+      setNome(data.nome ?? "")
+      setCpf(data.cpf ?? "")
+      setTelefone(data.telefone ?? "")
+      setEmail(data.email ?? "")
+      setGenero(data.genero ?? "")
+      setDataNascimento(data.dataNascimento ?? "")
+
+      setRua(data.enderecoEntrega?.rua ?? "")
+      setNumero(data.enderecoEntrega?.numero ?? "")
+      setCidade(data.enderecoEntrega?.cidade ?? "")
+      setBairro(data.enderecoEntrega?.bairro ?? "")
+      setUf(data.enderecoEntrega?.uf ?? "")
+      setCep(data.enderecoEntrega?.cep ?? "")
+      setLogradouro(data.enderecoEntrega?.logradouro ?? "")
     }
 
-  const url = isEdicao
-    ? `http://localhost:8090/pessoas/${id}`
-    : "http://localhost:8090/pessoas"
-
-  const method = isEdicao ? "PUT" : "POST"
-
-      try {
-          const token = localStorage.getItem("token");
-
-          const response = await fetch(url, {
-              method,
-              headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-          },
-              body: JSON.stringify(payload),
-          });
-
-          if (!response.ok) {
-              throw new Error("Erro ao cadastrar pessoa");
-          }
-
-          alert("Pessoa cadastrada com sucesso!");
-      } catch (error) {
-          console.error(error);
-          alert("Erro no cadastro");
-      }
-  }
+    carregarPessoa()
+  }, [id])
 
   async function novo() {
     setNome("");

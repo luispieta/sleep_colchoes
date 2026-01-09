@@ -7,6 +7,7 @@ import Link from "../../../componentes/Link";
 import Icone from "../../../componentes/Icone";
 import "./cadastroProduto.scss"
 import { useParams } from "react-router-dom";
+import { salvarProduto } from "../../../services/produtoService";
 
 export default function CadastroProduto() {
     const [nome, setNome] = useState("");
@@ -22,7 +23,7 @@ export default function CadastroProduto() {
     const [cargaSuportada, setCargaSuportada] = useState("");
     const [tratamentosEspeciais, setTratamentosEspeciais] = useState("");
     const { id } = useParams<{ id: string }>()
-    const isEdicao = !!id
+
 
     useEffect(() => {
         if (!id) return
@@ -59,55 +60,9 @@ export default function CadastroProduto() {
             setCargaSuportada(data.cargaSuportada ?? "");
             setTratamentosEspeciais(data.tratamentosEspeciais ?? "");
         }
+        
         carregarProduto()
     }, [id])
-
-    async function salvarProduto(e: React.FormEvent) {
-        e.preventDefault();
-
-        const payload = {
-            nome,
-            marca,
-            tipoProduto,
-            comprimento,
-            largura,
-            altura,
-            preco,
-            cor,
-            revestimento,
-            densidade,
-            cargaSuportada,
-            tratamentosEspeciais
-        }
-
-        const url = isEdicao
-            ? `http://localhost:8090/produtos/${id}`
-            : "http://localhost:8090/produtos"
-
-    const method = isEdicao ? "PUT" : "POST"
-
-        try {
-            const token = localStorage.getItem("token");
-
-            const response = await fetch(url, {
-                method,
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-            },
-                body: JSON.stringify(payload),
-            });
-
-            if (!response.ok) {
-                throw new Error("Erro ao cadastrar produto");
-            }
-
-            alert("Produto cadastrada com sucesso!");
-        } catch (error) {
-            console.error(error);
-            alert("Erro no cadastro");
-        }
-    }
 
     async function novo() {
         setNome("");
