@@ -3,20 +3,26 @@ import "./listagemProduto.scss"
 import MenuLateral from "../../../layouts/MenuLateral"
 import Listagens from "../../../componentes/Listagens"
 import Filtro from "../../../componentes/Filtro"
-import type { ProdutoData } from "../../../types/produto/ProdutoData"
 import { useNavigate } from "react-router-dom"
+import { listarProdutos } from "../../../services/produtoService"
+import { useEffect, useState } from "react"
+import type { ProdutoData } from "../../../types/produto/ProdutoData"
 
-interface PropsListagemProduto {
-    produtos: ProdutoData[]
-}
-
-export default function ListagemProduto({produtos}: PropsListagemProduto) {
+export default function ListagemProduto() {
 
     const navigate = useNavigate();
 
     function editarProduto(id: number) {
         navigate(`/produto/cadastroproduto/${id}`);
     }
+        
+    const [produtos, setProdutos] = useState<ProdutoData[]>([]);
+
+    useEffect(() => {
+        listarProdutos()
+        .then(setProdutos)
+        .catch(console.error);
+    }, []);
 
     return(
         <div className="listagem-produto">

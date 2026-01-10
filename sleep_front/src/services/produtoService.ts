@@ -1,87 +1,59 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import type { ProdutoData } from "../types/produto/ProdutoData";
 
 const api = "http://localhost:8090";
 
-export async function buscarProdutos() {
-    const token = localStorage.getItem("token");
+function getAuthHeaders() {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("Token não encontrado");
 
-    if (!token) {
-        throw new Error("Token não encontrado");
-    }
-
-    const response = await fetch(`${api}/produtos`, {
-        headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error(`Erro ${response.status} ao buscar produtos`);
-    }
-
-    return response.json();
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
 }
 
-export async function salvarProduto(e: React.FormEvent) {
-    const [nome, setNome] = useState("");
-    const [marca, setMarca] = useState("");
-    const [tipoProduto, setTipoProduto] = useState("");
-    const [comprimento, setComprimento] = useState("");
-    const [largura, setLargura] = useState("");
-    const [altura, setAltura] = useState("");
-    const [preco, setPreco] = useState("");
-    const [cor, setCor] = useState("");
-    const [revestimento, setRevestimento] = useState("");
-    const [densidade, setDensidade] = useState("");
-    const [cargaSuportada, setCargaSuportada] = useState("");
-    const [tratamentosEspeciais, setTratamentosEspeciais] = useState("");
-    const { id } = useParams<{ id: string }>()
-    const isEdicao = !!id
-    
-    e.preventDefault();
+export async function listarProdutos(): Promise<ProdutoData[]> {
+  const response = await fetch(`${api}/produtos`, {
+    headers: getAuthHeaders(),
+  });
 
-    const payload = {
-        nome,
-        marca,
-        tipoProduto,
-        comprimento,
-        largura,
-        altura,
-        preco,
-        cor,
-        revestimento,
-        densidade,
-        cargaSuportada,
-        tratamentosEspeciais
-    }
+  if (!response.ok) {
+    throw new Error("Erro ao listar produtos");
+  }
 
-    const url = isEdicao
-        ? `http://localhost:8090/produtos/${id}`
-        : "http://localhost:8090/produtos"
+  const data = await response.json();
+  return data.content ?? data;
+}
 
-    const method = isEdicao ? "PUT" : "POST"
+export async function buscarProdutoPorId(id: string): Promise<ProdutoData> {
+  const response = await fetch(`${api}/produtos/${id}`, {
+    headers: getAuthHeaders(),
+  });
 
-    try {
-        const token = localStorage.getItem("token");
+  if (!response.ok) {
+    throw new Error("Erro ao buscar produto");
+  }
 
-        const response = await fetch(url, {
-            method,
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-        },
-            body: JSON.stringify(payload),
-        });
+  return response.json();
+}
 
-        if (!response.ok) {
-            throw new Error("Erro ao cadastrar produto");
-        }
+export async function salvarProdutoApi(
+  payload: Omit<ProdutoData, "id" | "ativo">,
+  id?: string
+): Promise<ProdutoData> {
+  
+  const url = id ? `${api}/produtos/${id}` : `${api}/produtos`;
+  const method = id ? "PUT" : "POST";
 
-        alert("Produto cadastrada com sucesso!");
-    } catch (error) {
-        console.error(error);
-        alert("Erro no cadastro");
-    }
+  const response = await fetch(url, {
+    method,
+    headers: getAuthHeaders(),
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error("Erro ao salvar produto");
+  }
+
+  return response.json();
 }

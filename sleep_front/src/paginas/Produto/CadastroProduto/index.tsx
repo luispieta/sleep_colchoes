@@ -2,83 +2,50 @@ import { BsArrowLeftShort, BsBoxSeam, BsFileEarmark, BsFloppy } from "react-icon
 import Botao from "../../../componentes/Botao";
 import Campos from "../../../componentes/Campos";
 import MenuLateral from "../../../layouts/MenuLateral";
-import { useEffect, useState } from "react";
 import Link from "../../../componentes/Link";
 import Icone from "../../../componentes/Icone";
 import "./cadastroProduto.scss"
-import { useParams } from "react-router-dom";
-import { salvarProduto } from "../../../services/produtoService";
+import { useNavigate, useParams } from "react-router-dom";
+import { salvarProdutoApi } from "../../../services/produtoService";
+import { useProdutoForm } from "../../../hooks/produto/useProdutoForm";
+import { useProduto } from "../../../hooks/produto/useProduto";
 
 export default function CadastroProduto() {
-    const [nome, setNome] = useState("");
-    const [marca, setMarca] = useState("");
-    const [tipoProduto, setTipoProduto] = useState("");
-    const [comprimento, setComprimento] = useState("");
-    const [largura, setLargura] = useState("");
-    const [altura, setAltura] = useState("");
-    const [preco, setPreco] = useState("");
-    const [cor, setCor] = useState("");
-    const [revestimento, setRevestimento] = useState("");
-    const [densidade, setDensidade] = useState("");
-    const [cargaSuportada, setCargaSuportada] = useState("");
-    const [tratamentosEspeciais, setTratamentosEspeciais] = useState("");
-    const { id } = useParams<{ id: string }>()
+    const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
 
+    const {
+        estados,
+        setters,
+        montarPayload,
+        limparFormulario,
+    } = useProdutoForm();
 
-    useEffect(() => {
-        if (!id) return
+    useProduto(id, setters);
 
-        async function carregarProduto() {
-            const token = localStorage.getItem("token");
-            if (!token) return;
+    async function salvarProduto(e: React.FormEvent) {
+        e.preventDefault();
 
-            const response = await fetch(
-                `http://localhost:8090/produtos/${id}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
+        try {
+            await salvarProdutoApi(montarPayload(), id);
+            alert("Produto salva com sucesso!");
 
-            if (!response.ok) {
-                throw new Error("Erro ao carregar produto");
-            }
-
-            const data = await response.json();
-
-            setNome(data.nome ?? "");
-            setMarca(data.marca ?? "");
-            setTipoProduto(data.tipoProduto ?? "");
-            setComprimento(data.comprimento ?? "");
-            setLargura(data.largura ?? "");
-            setAltura(data.altura ?? "");
-            setPreco(data.preco ?? "");
-            setCor(data.cor ?? "");
-            setRevestimento(data.revestimento ?? "");
-            setDensidade(data.densidade ?? "");
-            setCargaSuportada(data.cargaSuportada ?? "");
-            setTratamentosEspeciais(data.tratamentosEspeciais ?? "");
+        if (id) {
+            navigate("/produto/listagemproduto");
+        } else {
+            limparFormulario();
         }
-        
-        carregarProduto()
-    }, [id])
-
-    async function novo() {
-        setNome("");
-        setMarca("");
-        setTipoProduto("");
-        setComprimento("");
-        setLargura("");
-        setAltura("");
-        setPreco("");
-        setCor("");
-        setRevestimento("");
-        setDensidade("");
-        setCargaSuportada("");
-        setTratamentosEspeciais("");
+        } catch (error) {
+            console.error(error);
+            alert("Erro ao salvar produto");
+        }
     }
-    
+
+    function novo() {
+        limparFormulario();
+        navigate("/produto/cadastroproduto");
+    }
+        
     return(
         <div className="cadastro-produto">
             <MenuLateral />
@@ -103,8 +70,8 @@ export default function CadastroProduto() {
                         nome="campo-nome"
                         descricao="Digite o nome"
                         obrigatorio
-                        valor={nome}
-                        onChange={setNome}
+                        valor={estados.nome}
+                        onChange={setters.setNome}
                     >
                         Nome
                     </Campos>
@@ -114,8 +81,8 @@ export default function CadastroProduto() {
                         nome="campo-marca"
                         descricao="Digite a marca"
                         obrigatorio
-                        valor={marca}
-                        onChange={setMarca}
+                        valor={estados.marca}
+                        onChange={setters.setMarca}
                     >
                         Marca
                     </Campos>
@@ -127,8 +94,8 @@ export default function CadastroProduto() {
                         nome="campo-email"
                         descricao="Digite o comprimento"
                         obrigatorio
-                        valor={comprimento}
-                        onChange={setComprimento}
+                        valor={estados.comprimento}
+                        onChange={setters.setComprimento}
                     >
                         Comprimento
                     </Campos>
@@ -138,8 +105,8 @@ export default function CadastroProduto() {
                         nome="campo-largura"
                         descricao="Digite a largura"
                         obrigatorio
-                        valor={largura}
-                        onChange={setLargura}
+                        valor={estados.largura}
+                        onChange={setters.setLargura}
                     >
                         Largura
                     </Campos>
@@ -149,8 +116,8 @@ export default function CadastroProduto() {
                         nome="campo-altura"
                         descricao="Digite a altura"
                         obrigatorio
-                        valor={altura}
-                        onChange={setAltura}
+                        valor={estados.altura}
+                        onChange={setters.setAltura}
                     >
                         Altura
                     </Campos>
@@ -163,8 +130,8 @@ export default function CadastroProduto() {
                         nome="campo-preco"
                         descricao="Digite o preço"
                         obrigatorio
-                        valor={preco}
-                        onChange={setPreco}
+                        valor={estados.preco}
+                        onChange={setters.setPreco}
                     >
                         Preço
                     </Campos>
@@ -173,8 +140,8 @@ export default function CadastroProduto() {
                         tipo="text"
                         nome="campo-cor"
                         descricao="Digite a cor"
-                        valor={cor}
-                        onChange={setCor}
+                        valor={estados.cor}
+                        onChange={setters.setCor}
                     >
                         Cor
                     </Campos>
@@ -184,8 +151,8 @@ export default function CadastroProduto() {
                         nome="campo-tipo-produto"
                         descricao="Digite o tipo do produto"
                         obrigatorio
-                        valor={tipoProduto}
-                        onChange={setTipoProduto}
+                        valor={estados.tipoProduto}
+                        onChange={setters.setTipoProduto}
                     >
                         Tipo Produto
                     </Campos>
@@ -197,8 +164,8 @@ export default function CadastroProduto() {
                         tipo="text"
                         nome="campo-revestimento"
                         descricao="Digite o revestimento"
-                        valor={revestimento}
-                        onChange={setRevestimento}
+                        valor={estados.revestimento}
+                        onChange={setters.setRevestimento}
                     >
                         Revestimento
                     </Campos>
@@ -207,8 +174,8 @@ export default function CadastroProduto() {
                         tipo="text"
                         nome="campo-densidade"
                         descricao="Digite a densidade"
-                        valor={densidade}
-                        onChange={setDensidade}
+                        valor={estados.densidade}
+                        onChange={setters.setDensidade}
                     >
                         Densidade
                     </Campos>        
@@ -221,8 +188,8 @@ export default function CadastroProduto() {
                         tipo="number"
                         nome="campo-carga-suportada"
                         descricao="Digite a carga suportada"
-                        valor={cargaSuportada}
-                        onChange={setCargaSuportada}
+                        valor={estados.cargaSuportada}
+                        onChange={setters.setCargaSuportada}
                     >
                         Carga suportada
                     </Campos>
@@ -231,8 +198,8 @@ export default function CadastroProduto() {
                         tipo="text"
                         nome="campo-tratamentos-especiais"
                         descricao="Digite o tratamento especial"
-                        valor={tratamentosEspeciais}
-                        onChange={setTratamentosEspeciais}
+                        valor={estados.tratamentosEspeciais}
+                        onChange={setters.setTratamentosEspeciais}
                     >
                         Tratamento especial
                     </Campos>  
