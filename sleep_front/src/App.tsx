@@ -8,11 +8,9 @@ import ListagemProduto from "./paginas/Produto/ListagemProduto";
 import CadastroProduto from "./paginas/Produto/CadastroProduto";
 import Login from "./paginas/Login";
 import { buscarProdutos } from "./services/produtoService";
-import { buscarPessoas } from "./services/pessoaService";
 
 export default function App() {
   
-  const [pessoa, setPessoa] = useState([]);
   const [produto, setProduto] = useState([]);
 
   useEffect(() => {
@@ -28,26 +26,13 @@ export default function App() {
       });
   }, []);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (!token) return;
-
-    buscarPessoas()
-      .then(dados => setPessoa(dados.content ?? dados))
-      .catch(err => {
-        console.error(err);
-        alert("Sessão expirada, faça login novamente");
-      });
-  }, []);
-
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/paginaprincipal" element={<PaginaPrincipal/>}/>
 
-          <Route path="/pessoa/listagempessoa" element={<ListagemPessoa pessoas={pessoa}/>}/>
+          <Route path="/pessoa/listagempessoa" element={<ListagemPessoa />}/>
           <Route path="/pessoa/cadastropessoa" element={<CadastrarPessoa />}/>
           <Route path="/pessoa/cadastropessoa/:id" element={<CadastrarPessoa />} />
 

@@ -1,102 +1,59 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import type { Genero } from "../types/enums/Genero";
+import type { PessoaData } from "../types/pessoa/PessoaData";
 
 const api = "http://localhost:8090";
 
-export async function buscarPessoas() {
-    const token = localStorage.getItem("token");
+function getAuthHeaders() {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("Token não encontrado");
 
-    if (!token) {
-        throw new Error("Token não encontrado");
-    }
-
-    const response = await fetch(`${api}/pessoas`, {
-        headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error(`Erro ${response.status} ao buscar produtos`);
-    }
-
-    return response.json();
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
 }
 
-export async function salvarPessoa(e: React.FormEvent) {
+export async function listarPessoas(): Promise<PessoaData[]> {
+  const response = await fetch(`${api}/pessoas`, {
+    headers: getAuthHeaders(),
+  });
 
-    const [nome, setNome] = useState("");
-    const [cpf, setCpf] = useState("");
-    const [telefone, setTelefone] = useState("");
-    const [email, setEmail] = useState("");
-    const [genero, setGenero] = useState<Genero | "">("");
-    const [dataNascimento, setDataNascimento] = useState("");
-    const [rua, setRua] = useState("");
-    const [numero, setNumero] = useState("");
-    const [cidade, setCidade] = useState("");
-    const [bairro, setBairro] = useState("");
-    const [uf, setUf] = useState("");
-    const [cep, setCep] = useState("");
-    const [logradouro, setLogradouro] = useState("");
-    const { id } = useParams<{ id: string }>()
-    const isEdicao = !!id
-
-    e.preventDefault()
-
-    const payload = {
-      nome,
-      cpf,
-      telefone,
-      email,
-      genero,
-      dataNascimento,
-      enderecoEntrega: {
-        rua,
-        numero,
-        cidade,
-        bairro,
-        uf,
-        cep,
-        logradouro,
-      },
-      enderecoCobranca: {
-        rua,
-        numero,
-        cidade,
-        bairro,
-        uf,
-        cep,
-        logradouro,
-      },
-    }
-
-  const url = isEdicao
-    ? `http://localhost:8090/pessoas/${id}`
-    : "http://localhost:8090/pessoas"
-
-  const method = isEdicao ? "PUT" : "POST"
-
-      try {
-          const token = localStorage.getItem("token");
-
-          const response = await fetch(url, {
-              method,
-              headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-          },
-              body: JSON.stringify(payload),
-          });
-
-          if (!response.ok) {
-              throw new Error("Erro ao cadastrar pessoa");
-          }
-
-          alert("Pessoa cadastrada com sucesso!");
-      } catch (error) {
-          console.error(error);
-          alert("Erro no cadastro");
-      }
+  if (!response.ok) {
+    throw new Error("Erro ao listar pessoas");
   }
+
+  const data = await response.json();
+  return data.content ?? data;
+}
+
+export async function buscarPessoaPorId(id: string): Promise<PessoaData> {
+  const response = await fetch(`${api}/pessoas/${id}`, {
+    headers: getAuthHeaders(),
+  });
+
+  if (!response.ok) {
+    throw new Error("Erro ao buscar pessoa");
+  }
+
+  return response.json();
+}
+
+export async function salvarPessoaApi(
+  payload: Omit<PessoaData, "id" | "ativo">,
+  id?: string
+): Promise<PessoaData> {
+  
+  const url = id ? `${api}/pessoas/${id}` : `${api}/pessoas`;
+  const method = id ? "PUT" : "POST";
+
+  const response = await fetch(url, {
+    method,
+    headers: getAuthHeaders(),
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error("Erro ao salvar pessoa");
+  }
+
+  return response.json();
+}

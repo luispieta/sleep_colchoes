@@ -1,42 +1,26 @@
 import { useState } from "react";
+import "./login.scss";
 import { useNavigate } from "react-router-dom";
-
-const API_URL = "http://localhost:8090";
-
-export async function autenticacao(login: string, senha: string) {
-  const response = await fetch(`${API_URL}/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ login, senha }),
-  });
-
-  if (!response.ok) {
-    throw new Error("Login inválido");
-  }
-
-  return response.json();
-}
+import { autenticacao } from "../../services/loginService";
 
 export default function Login() {
+
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
 
   const navigate = useNavigate();
 
   async function acessar(e: React.FormEvent) {
-    e.preventDefault();
+      e.preventDefault();
 
-    try {
-      const { token } = await autenticacao(login, senha);
-      localStorage.setItem("token", token);
-      navigate("/paginaprincipal");
-    } catch {
-      alert("Usuário ou senha inválidos");
-    }
+      try {
+          const { token } = await autenticacao(login, senha);
+          localStorage.setItem("token", token);
+          navigate("/paginaprincipal");
+      } catch {
+          alert("Usuário ou senha inválidos");
+      }
   }
-
 
   return (
     <form onSubmit={acessar}>

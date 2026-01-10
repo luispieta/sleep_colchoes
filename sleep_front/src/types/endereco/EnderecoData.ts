@@ -1,4 +1,5 @@
 export interface EnderecoData {
+    rua: string;
     cep: string;
     logradouro: string;
     numero: string;

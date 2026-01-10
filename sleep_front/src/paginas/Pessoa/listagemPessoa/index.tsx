@@ -1,23 +1,28 @@
 import { BsPencilFill } from "react-icons/bs"
 import "./listagemPessoa.scss"
-import type { PessoaData } from "../../../types/pessoa/PessoaData"
 import MenuLateral from "../../../layouts/MenuLateral"
 import Listagens from "../../../componentes/Listagens"
 import Filtro from "../../../componentes/Filtro"
 import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { listarPessoas } from "../../../services/pessoaService"
+import type { PessoaData } from "../../../types/pessoa/PessoaData"
 
-interface PropsListagemPessoa {
-    pessoas: PessoaData[],
-
-}
-
-export default function ListagemPessoa({pessoas}: PropsListagemPessoa) {
+export default function ListagemPessoa() {
 
     const navigate = useNavigate();
 
     function editarPessoa(id: number) {
         navigate(`/pessoa/cadastropessoa/${id}`);
     }
+        
+    const [pessoas, setPessoas] = useState<PessoaData[]>([]);
+
+    useEffect(() => {
+        listarPessoas()
+        .then(setPessoas)
+        .catch(console.error);
+    }, []);
 
     return(
         <div className="listagem-pessoa">

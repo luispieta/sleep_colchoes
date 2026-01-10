@@ -4,86 +4,51 @@ import Campos from "../../../componentes/Campos";
 import ListaSuspensa from "../../../componentes/ListaSuspensa";
 import MenuLateral from "../../../layouts/MenuLateral";
 import { Genero, GeneroLabel } from "../../../types/enums/Genero";
-import { useEffect, useState } from "react";
 import "./cadastrarPessoa.scss"
 import Tab from "../../../layouts/Tab";
 import Icone from "../../../componentes/Icone";
 import Link from "../../../componentes/Link";
 import { viaCep } from "../../../services/viaCep";
-import { useParams } from "react-router-dom";
-import { salvarPessoa } from "../../../services/pessoaService";
+import { useNavigate, useParams } from "react-router-dom";
+import { salvarPessoaApi } from "../../../services/pessoaService";
+import { usePessoaForm } from "../../../hooks/pessoa/usePessoaForm";
+import { usePessoa } from "../../../hooks/pessoa/usePessoa";
 
 export default function CadastrarPessoa() {
-  const [nome, setNome] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [email, setEmail] = useState("");
-  const [genero, setGenero] = useState<Genero | "">("");
-  const [dataNascimento, setDataNascimento] = useState("");
-  const [rua, setRua] = useState("");
-  const [numero, setNumero] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [bairro, setBairro] = useState("");
-  const [uf, setUf] = useState("");
-  const [cep, setCep] = useState("");
-  const [logradouro, setLogradouro] = useState("");
-  const { id } = useParams<{ id: string }>()
+  
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!id) return
+  const {
+    estados,
+    setters,
+    montarPayload,
+    limparFormulario,
+  } = usePessoaForm();
 
-    async function carregarPessoa() {
-      const token = localStorage.getItem("token");
-      if (!token) return;
+  usePessoa(id, setters);
 
-      const response = await fetch(
-          `http://localhost:8090/pessoas/${id}`,
-          {
-              headers: {
-                  Authorization: `Bearer ${token}`,
-              },
-          }
-      );
+  async function salvarPessoa(e: React.FormEvent) {
+    e.preventDefault();
 
-      if (!response.ok) {
-          throw new Error("Erro ao carregar pessoa");
+    try {
+      await salvarPessoaApi(montarPayload(), id);
+      alert("Pessoa salva com sucesso!");
+
+      if (id) {
+        navigate("/pessoa/listagempessoa");
+      } else {
+        limparFormulario();
       }
-
-      const data = await response.json();
-
-      setNome(data.nome ?? "")
-      setCpf(data.cpf ?? "")
-      setTelefone(data.telefone ?? "")
-      setEmail(data.email ?? "")
-      setGenero(data.genero ?? "")
-      setDataNascimento(data.dataNascimento ?? "")
-
-      setRua(data.enderecoEntrega?.rua ?? "")
-      setNumero(data.enderecoEntrega?.numero ?? "")
-      setCidade(data.enderecoEntrega?.cidade ?? "")
-      setBairro(data.enderecoEntrega?.bairro ?? "")
-      setUf(data.enderecoEntrega?.uf ?? "")
-      setCep(data.enderecoEntrega?.cep ?? "")
-      setLogradouro(data.enderecoEntrega?.logradouro ?? "")
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao salvar pessoa");
     }
+  }
 
-    carregarPessoa()
-  }, [id])
-
-  async function novo() {
-    setNome("");
-    setCpf("");
-    setTelefone("");
-    setEmail("");
-    setGenero("");
-    setDataNascimento("");
-    setRua("");
-    setNumero("");
-    setCidade("");
-    setBairro("");
-    setUf("");
-    setCep("");
-    setLogradouro("");
+  function novo() {
+    limparFormulario();
+    navigate("/pessoa/cadastropessoa");
   }
 
   return (
@@ -114,8 +79,8 @@ export default function CadastrarPessoa() {
             nome="campo-nome"
             descricao="Digite seu nome"
             obrigatorio
-            valor={nome}
-            onChange={setNome}
+            valor={estados.nome}
+            onChange={setters.setNome}
           >
             Nome
           </Campos>
@@ -125,8 +90,8 @@ export default function CadastrarPessoa() {
             nome="campo-cpf"
             descricao="000.000.000-00"
             obrigatorio
-            valor={cpf}
-            onChange={setCpf}
+            valor={estados.cpf}
+            onChange={setters.setCpf}
             mascara="cpf"
           >
             CPF
@@ -139,8 +104,8 @@ export default function CadastrarPessoa() {
             nome="campo-telefone"
             descricao="(00) 00000-0000"
             obrigatorio
-            valor={telefone}
-            onChange={setTelefone}
+            valor={estados.telefone}
+            onChange={setters.setTelefone}
             mascara="telefone"
           >
             Telefone
@@ -151,8 +116,8 @@ export default function CadastrarPessoa() {
             nome="campo-email"
             descricao="Digite seu e-mail"
             obrigatorio
-            valor={email}
-            onChange={setEmail}
+            valor={estados.email}
+            onChange={setters.setEmail}
           >
             E-mail
           </Campos>
@@ -165,16 +130,16 @@ export default function CadastrarPessoa() {
             obrigatorio
             itens={Object.values(Genero)}
             labels={GeneroLabel}
-            valor={genero}
-            onChange={e => setGenero(e.target.value as Genero)}
+            valor={estados.genero}
+            onChange={e => setters.setGenero(e.target.value as Genero)}
           />
 
           <Campos
             tipo="date"
             nome="campo-data-nascimento"
             obrigatorio
-            valor={dataNascimento}
-            onChange={setDataNascimento}
+            valor={estados.dataNascimento}
+            onChange={setters.setDataNascimento}
           >
             Data de Nascimento
           </Campos>
@@ -190,16 +155,16 @@ export default function CadastrarPessoa() {
             nome="campo-cep"
             descricao="00000-000"
             obrigatorio
-            valor={cep}
-            onChange={setCep}
+            valor={estados.cep}
+            onChange={setters.setCep}
             mascara="cep"
             onBlur={async () => {
-              const endereco = await viaCep(cep);
+              const endereco = await viaCep(estados.cep);
 
-              setRua(endereco.logradouro);
-              setBairro(endereco.bairro);
-              setCidade(endereco.localidade);
-              setUf(endereco.uf);
+              setters.setRua(endereco.logradouro);
+              setters.setBairro(endereco.bairro);
+              setters.setCidade(endereco.localidade);
+              setters.setUf(endereco.uf);
             }}
           >
             CEP
@@ -210,8 +175,8 @@ export default function CadastrarPessoa() {
             nome="campo-rua"
             descricao="Digite sua rua"
             obrigatorio
-            valor={rua}
-            onChange={setRua}
+            valor={estados.rua}
+            onChange={setters.setRua}
           >
             Rua
           </Campos>
@@ -224,8 +189,8 @@ export default function CadastrarPessoa() {
             nome="campo-bairro"
             descricao="Digite o bairro"
             obrigatorio
-            valor={bairro}
-            onChange={setBairro}
+            valor={estados.bairro}
+            onChange={setters.setBairro}
           >
             Bairro
           </Campos>
@@ -235,8 +200,8 @@ export default function CadastrarPessoa() {
             nome="campo-numero"
             descricao="Digite o número"
             obrigatorio
-            valor={numero}
-            onChange={setNumero}
+            valor={estados.numero}
+            onChange={setters.setNumero}
           >
             Número
           </Campos>        
@@ -246,8 +211,8 @@ export default function CadastrarPessoa() {
             nome="campo-uf"
             descricao="UF"
             obrigatorio
-            valor={uf}
-            onChange={setUf}
+            valor={estados.uf}
+            onChange={setters.setUf}
           >
             UF
           </Campos>
@@ -259,8 +224,8 @@ export default function CadastrarPessoa() {
             nome="campo-cidade"
             descricao="Digite a cidade"
             obrigatorio
-            valor={cidade}
-            onChange={setCidade}
+            valor={estados.cidade}
+            onChange={setters.setCidade}
           >
             Cidade
           </Campos>  
@@ -270,8 +235,8 @@ export default function CadastrarPessoa() {
             nome="campo-logradouro"
             descricao="Digite o logradouro"
             obrigatorio
-            valor={logradouro}
-            onChange={setLogradouro}
+            valor={estados.logradouro}
+            onChange={setters.setLogradouro}
           >
             Logradouro
           </Campos>

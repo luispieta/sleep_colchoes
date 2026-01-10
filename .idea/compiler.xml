@@ -11,7 +11,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
         </processorPath>
         <module name="sleep" />
-        <module name="sleep_colchoes" />
       </profile>
     </annotationProcessing>
   </component>
