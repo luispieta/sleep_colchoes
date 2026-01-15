@@ -15,8 +15,8 @@ export default function Botao({children, tipo, onClick, icone}: PropsBotao) {
             onClick={onClick} 
             type={tipo} 
             className="botao">
-                {icone}
                 <p className="descricao">
+                    {icone}
                     {children}
                 </p>
         </button>    

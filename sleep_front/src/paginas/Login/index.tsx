@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./login.scss";
 import { useNavigate } from "react-router-dom";
 import { autenticacao } from "../../services/loginService";
+import Campos from "../../componentes/Campos";
+import Botao from "../../componentes/Botao";
 
 export default function Login() {
 
@@ -23,22 +25,37 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={acessar}>
-      <input
-        placeholder="Login"
-        value={login}
-        onChange={e => setLogin(e.target.value)}
-      />
+    <div className="pagina-login">
+      <div className="secao-login">
+        <form onSubmit={acessar}>
+          <Campos 
+            nome={"login"}
+            children={"Login"}
+            descricao="Login"
+            obrigatorio
+            valor={login}
+            onChange={setLogin}
+          />
+          
+          <Campos 
+            tipo="password"
+            nome={"senha"} 
+            children={"Senha"}
+            descricao="Senha"
+            obrigatorio 
+            valor={senha} 
+            onChange={setSenha} 
+          />
 
-      <input
-        type="password"
-        placeholder="Senha"
-        value={senha}
-        onChange={e => setSenha(e.target.value)}
-      />
+          <Botao 
+            children={"Entrar"} 
+            tipo={"submit"}
+          />
+        </form>
+      </div>
 
-      <button 
-        type="submit">Entrar</button>
-    </form>
+      <div className="imagem">
+      </div>
+    </div>
   );
 }

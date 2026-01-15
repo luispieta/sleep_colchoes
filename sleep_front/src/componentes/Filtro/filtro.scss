@@ -1,6 +1,19 @@
+@use "../../styles/variaveis" as *;
+
 .filtro {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
   margin-bottom: 2rem;
+
+  .linha {
+    max-width: 1200px; 
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1.5fr; 
+    gap: 2rem;    
+    align-items: center;
+  }
+
+  .botao-filtro{
+      margin: $margin-padrao 10px 0 0;
+  }
+
 }

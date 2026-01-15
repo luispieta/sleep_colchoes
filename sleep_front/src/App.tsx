@@ -1,32 +1,36 @@
-import { useEffect, useState } from "react";
-import PaginaPrincipal from "./paginas/menuPrincipal/PaginaPrincipal";
 import "./App.scss";
-import ListagemPessoa from "./paginas/Pessoa/listagemPessoa";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Login from "./paginas/Login";
+import PaginaPrincipal from "./paginas/menuPrincipal/PaginaPrincipal";
+import ListagemPessoa from "./paginas/Pessoa/listagemPessoa";
 import CadastrarPessoa from "./paginas/Pessoa/cadastrarPessoa";
 import ListagemProduto from "./paginas/Produto/ListagemProduto";
 import CadastroProduto from "./paginas/Produto/CadastroProduto";
-import Login from "./paginas/Login";
+import RotaPrivada from "./routes/RotaPrivada/index.tsx";
 
 export default function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/paginaprincipal" element={<PaginaPrincipal/>}/>
+    <BrowserRouter>
+      <Routes>
 
-          <Route path="/pessoa/listagempessoa" element={<ListagemPessoa />}/>
-          <Route path="/pessoa/cadastropessoa" element={<CadastrarPessoa />}/>
+        <Route path="/auth/login" element={<Login />} />
+
+        <Route element={<RotaPrivada />}>
+
+          <Route path="/paginaprincipal" element={<PaginaPrincipal />} />
+
+          <Route path="/pessoa/listagempessoa" element={<ListagemPessoa />} />
+          <Route path="/pessoa/cadastropessoa" element={<CadastrarPessoa />} />
           <Route path="/pessoa/cadastropessoa/:id" element={<CadastrarPessoa />} />
 
-          <Route path="/produto/listagemproduto" element={<ListagemProduto />}/>
-          <Route path="/produto/cadastroproduto" element={<CadastroProduto />}/>
+          <Route path="/produto/listagemproduto" element={<ListagemProduto />} />
+          <Route path="/produto/cadastroproduto" element={<CadastroProduto />} />
           <Route path="/produto/cadastroproduto/:id" element={<CadastroProduto />} />
 
-          <Route path="/auth/login" element={<Login />} />
+        </Route>
 
-        </Routes>
-      </BrowserRouter>
-    </>
-  )
+      </Routes>
+    </BrowserRouter>
+  );
 }

@@ -1,0 +1,32 @@
+@use "../../styles/variaveis" as *;
+
+.pagina-login {
+  display: flex;
+  height: 100vh;
+
+  .secao-login, .imagem {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .secao-login {
+    background-color: aqua;
+    border-bottom-right-radius: $radius-card;
+    border-top-right-radius: $radius-card;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 360px;
+    }
+  }
+
+  .imagem {
+    background-color: bisque;
+  }
+}

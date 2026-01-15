@@ -22,33 +22,38 @@ export default function Filtro({placeholder, descricao, labelTexto, idTexto, lab
 
     return(
         <div className="filtro">
-            <Campos
-                tipo={"number"}
-                nome={"codigo"}
-                children={"Código"}
-                descricao={`Digite o código do ${placeholder}`} 
-                valor={pesquisa} 
-                onChange={setPesquisa}            
-            />
-            <Campos 
-                tipo={"text"}
-                nome={idTexto}
-                children={labelTexto}
-                descricao={`Digite o nome do ${placeholder}`} 
-                valor={pesquisa} 
-                onChange={setPesquisa}            
+            <div className="linha">
+                <Campos
+                    tipo={"number"}
+                    nome={"codigo"}
+                    children={"Código"}
+                    descricao={`Digite o código do ${placeholder}`} 
+                    valor={pesquisa} 
+                    onChange={setPesquisa}            
+                />
+                <Campos 
+                    tipo={"text"}
+                    nome={idTexto}
+                    children={labelTexto}
+                    descricao={`Digite o nome do ${placeholder}`} 
+                    valor={pesquisa} 
+                    onChange={setPesquisa}            
 
-            />
-            <ListaSuspensa 
-                nome={idLista} 
-                children={labelLista} 
-                itens={[]}
-                valor={pesquisa}
-                onChange={e => setPesquisa(e.target.value)}
-            />
-            <Link to={to}>
-                <Botao tipo={"button"} icone={<BsPlus size={25}/>}>{descricao}</Botao>
-            </Link>
+                />
+                <ListaSuspensa 
+                    nome={idLista} 
+                    children={labelLista} 
+                    itens={[]}
+                    valor={pesquisa}
+                    onChange={e => setPesquisa(e.target.value)}
+                />
+
+                <div className="botao-filtro">
+                    <Link to={to}>
+                        <Botao tipo={"button"} icone={<BsPlus size={25}/>}>{descricao}</Botao>
+                    </Link>
+                </div>
+            </div>
         </div>
     )
 }
