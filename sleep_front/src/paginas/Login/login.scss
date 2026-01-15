@@ -13,9 +13,7 @@
   }
 
   .secao-login {
-    background-color: aqua;
-    border-bottom-right-radius: $radius-card;
-    border-top-right-radius: $radius-card;
+    background-color: $cor-background-claro;
 
     form {
         display: flex;
@@ -27,6 +25,8 @@
   }
 
   .imagem {
-    background-color: bisque;
+    background-color: $cor-primaria;
+    border-bottom-left-radius: $radius-card;
+    border-top-left-radius: $radius-card;
   }
 }
