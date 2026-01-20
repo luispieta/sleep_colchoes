@@ -24,6 +24,28 @@ export default function ListagemPessoa() {
         .catch(console.error);
     }, []);
 
+    const [filtro, setFiltro] = useState({
+        codigo: "",
+        texto: "",
+        lista: ""
+    });
+
+    const pessoasFiltradas = pessoas.filter(pessoa => {
+        return (
+            (filtro.codigo === "" || pessoa.id === Number(filtro.codigo)) &&
+            (filtro.texto === "" || pessoa.nome.toLowerCase().includes(filtro.texto.toLowerCase())) &&
+            (filtro.lista === "" || `${pessoa.enderecoEntrega.cidade} - ${pessoa.enderecoEntrega.uf}` === filtro.lista)
+        );
+    });
+
+    const cidades = Array.from(
+        new Set(
+            pessoas
+            .map(pessoa => `${pessoa.enderecoEntrega.cidade} - ${pessoa.enderecoEntrega.uf}`)
+            .filter(Boolean)
+        )
+    );
+
     return(
         <div className="listagem-pessoa">
             <MenuLateral/>
@@ -34,8 +56,11 @@ export default function ListagemPessoa() {
                     idTexto={"cliente"}
                     labelLista={"Cidade"}
                     idLista={"cidade"}
-                    descricao={"Nova pessoa"} 
-                    to={"/pessoa/cadastropessoa"}
+                    descricao={"Nova pessoa"}
+                    to={"/pessoa/cadastropessoa"} 
+                    pesquisa={filtro} 
+                    setPesquisa={setFiltro} 
+                    itens={cidades}              
                 />                
                 <Listagens
                     colunas={[
@@ -47,7 +72,7 @@ export default function ListagemPessoa() {
                         { cabecalho: "Cidade" },
                         { cabecalho: "Ações" }
                     ]}
-                    data={pessoas}
+                    data={pessoasFiltradas}
                     renderizarLinha={(pessoa) => (
                         <tr key={pessoa.id}>
                             <td>{pessoa.id}</td>

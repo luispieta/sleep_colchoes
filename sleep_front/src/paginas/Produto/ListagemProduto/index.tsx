@@ -24,6 +24,28 @@ export default function ListagemProduto() {
         .catch(console.error);
     }, []);
 
+        const [filtro, setFiltro] = useState({
+        codigo: "",
+        texto: "",
+        lista: ""
+    });
+
+    const produtosFiltradas = produtos.filter(produto => {
+        return (
+            (filtro.codigo === "" || produto.id === Number(filtro.codigo)) &&
+            (filtro.texto === "" || produto.nome.toLowerCase().includes(filtro.texto.toLowerCase())) &&
+            (filtro.lista === "" || produto.tipoProduto.toLowerCase().includes(filtro.lista.toLowerCase()))
+        );
+    });
+
+    const tipoDoProduto = Array.from(
+        new Set(
+            produtos
+            .map(produto => produto.tipoProduto.toLowerCase())
+            .filter(Boolean)
+        )
+    );
+
     return(
         <div className="listagem-produto">
             <MenuLateral/>
@@ -34,9 +56,12 @@ export default function ListagemProduto() {
                     idTexto={"produto"}
                     labelLista={"Tipo do produto"}
                     idLista={"tipo-produto"}
-                    descricao={"Novo produto"} 
-                    to={"/produto/cadastroproduto"}
-                />
+                    descricao={"Novo produto"}
+                    to={"/produto/cadastroproduto"} 
+                    pesquisa={filtro} 
+                    setPesquisa={setFiltro}
+                    itens={tipoDoProduto}                
+                />  
                 <Listagens
                     colunas={[
                         { cabecalho: "Código" },
@@ -47,7 +72,7 @@ export default function ListagemProduto() {
                         { cabecalho: "Preço" },
                         { cabecalho: "Ações" }
                     ]}
-                    data={produtos}
+                    data={produtosFiltradas}
                     renderizarLinha={(produto) => (
                         <tr key={produto.id}>
                             <td>{produto.id}</td>

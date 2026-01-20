@@ -4,21 +4,38 @@ import Campos from "../Campos";
 import ListaSuspensa from "../ListaSuspensa";
 import "./filtro.scss";
 import Link from "../Link";
-import { useState } from "react";
 
-interface PropsFiltro{
-    placeholder: string,
-    labelTexto: string,
-    idTexto: string,
-    labelLista: string,
-    idLista: string,
-    descricao: string,
-    to: string
+interface PesquisaState {
+    codigo: string;
+    texto: string;
+    lista: string;
 }
 
-export default function Filtro({placeholder, descricao, labelTexto, idTexto, labelLista, idLista, to}: PropsFiltro) {
+interface PropsFiltro{
+    placeholder: string;
+    labelTexto: string;
+    idTexto: string;
+    labelLista: string;
+    idLista: string;
+    descricao: string;
+    to: string;
+    pesquisa: PesquisaState;
+    setPesquisa: React.Dispatch<React.SetStateAction<PesquisaState>>;
+    itens: string[];
+}
 
-    const [pesquisa, setPesquisa] = useState("");
+export default function Filtro({
+    placeholder, 
+    descricao, 
+    labelTexto, 
+    idTexto, 
+    labelLista, 
+    idLista, 
+    to,
+    pesquisa,
+    setPesquisa,
+    itens
+}: PropsFiltro) {
 
     return(
         <div className="filtro">
@@ -28,24 +45,30 @@ export default function Filtro({placeholder, descricao, labelTexto, idTexto, lab
                     nome={"codigo"}
                     children={"Código"}
                     descricao={`Digite o código do ${placeholder}`} 
-                    valor={pesquisa} 
-                    onChange={setPesquisa}            
+                    valor={pesquisa.codigo}
+                    onChange={(valor) =>
+                        setPesquisa({ ...pesquisa, codigo: valor })
+                    }
                 />
                 <Campos 
                     tipo={"text"}
                     nome={idTexto}
                     children={labelTexto}
                     descricao={`Digite o nome do ${placeholder}`} 
-                    valor={pesquisa} 
-                    onChange={setPesquisa}            
+                    valor={pesquisa.texto}
+                    onChange={(valor) =>
+                        setPesquisa({ ...pesquisa, texto: valor })
+                    }         
 
                 />
                 <ListaSuspensa 
                     nome={idLista} 
                     children={labelLista} 
-                    itens={[]}
-                    valor={pesquisa}
-                    onChange={e => setPesquisa(e.target.value)}
+                    itens={itens}
+                    valor={pesquisa.lista}
+                    onChange={(e) =>
+                        setPesquisa({ ...pesquisa, lista: e.target.value })
+                    }
                 />
 
                 <div className="botao-filtro">

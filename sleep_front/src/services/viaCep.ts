@@ -1,6 +1,6 @@
-export async function viaCep(cep: string) {
+export async function viaCep(cep?: string) {
     try {
-        const cepLimpo = cep.replace(/\D/g, "");
+        const cepLimpo = cep?.replace(/\D/g, "");
 
         const response = await fetch(
             `https://viacep.com.br/ws/${cepLimpo}/json/`

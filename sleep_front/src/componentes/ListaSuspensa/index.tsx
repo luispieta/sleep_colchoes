@@ -11,7 +11,7 @@ interface PropsListaSuspensa<T extends string> {
     valor: T | "";
 }
 
-export default function CampoFlutuante<T extends string>({
+export default function ListaSuspensa<T extends string>({
     nome,
     children,
     obrigatorio,
@@ -31,7 +31,7 @@ export default function CampoFlutuante<T extends string>({
                 onChange={onChange} 
                 value={valor ?? ""}
             >
-                <option value="" disabled>
+                <option value="">
                     Selecione
                 </option>
 

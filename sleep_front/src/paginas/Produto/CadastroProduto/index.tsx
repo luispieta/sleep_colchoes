@@ -126,12 +126,13 @@ export default function CadastroProduto() {
                 <div className="linha linha-3">
                     
                     <Campos
-                        tipo="number"
+                        tipo="text"
                         nome="campo-preco"
                         descricao="Digite o preço"
                         obrigatorio
                         valor={estados.preco}
                         onChange={setters.setPreco}
+                        mascara="preco"
                     >
                         Preço
                     </Campos>
