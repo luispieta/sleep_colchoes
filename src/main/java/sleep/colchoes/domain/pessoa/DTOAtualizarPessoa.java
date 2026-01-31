@@ -1,8 +1,8 @@
 package sleep.colchoes.domain.pessoa;
 
-import jakarta.validation.constraints.NotNull;
 import sleep.colchoes.domain.endereco.DTOAtualizarEndereco;
-import sleep.colchoes.domain.endereco.Endereco;
+import sleep.colchoes.domain.enums.Genero;
+
 import java.time.LocalDate;
 
 public record DTOAtualizarPessoa(

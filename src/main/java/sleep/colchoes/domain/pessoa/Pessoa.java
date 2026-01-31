@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import sleep.colchoes.domain.endereco.Endereco;
+import sleep.colchoes.domain.enums.Genero;
 
 import java.time.LocalDate;
 
@@ -30,7 +31,7 @@ public class Pessoa {
     private LocalDate dataNascimento;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_ENDERECO_ENTREGA ")
+    @JoinColumn(name = "ID_ENDERECO_ENTREGA")
     private Endereco enderecoEntrega;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

@@ -1,0 +1,19 @@
+@use "../../../styles/variaveis" as *;
+
+.listagem-pedido {
+    margin-left: 250px;
+    padding: 2rem;
+    background-color: $cor-background-claro;
+    min-height: 100vh;
+    height: auto;
+
+    .pedido-conteiner{
+        background-color: #ededed;
+        padding: 2rem;
+        border-radius: $radius-card;
+    }   
+
+    .acoes {
+        cursor: pointer;
+    }
+}

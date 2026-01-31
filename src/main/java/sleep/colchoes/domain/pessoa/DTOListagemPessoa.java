@@ -1,6 +1,7 @@
 package sleep.colchoes.domain.pessoa;
 
 import sleep.colchoes.domain.endereco.DTOListagemEndereco;
+import sleep.colchoes.domain.enums.Genero;
 
 import java.time.LocalDate;
 

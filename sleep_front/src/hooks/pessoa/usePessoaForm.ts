@@ -27,6 +27,7 @@ export function usePessoaForm() {
       genero: genero as Genero,
       dataNascimento: new Date(dataNascimento),
       enderecoEntrega: {
+        id: 0,
         rua,
         numero,
         cidade,
@@ -36,6 +37,7 @@ export function usePessoaForm() {
         logradouro,
       },
       enderecoCobranca: {
+        id: 0,
         rua,
         numero,
         cidade,

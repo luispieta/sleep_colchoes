@@ -8,6 +8,7 @@ public class SimNaoConverter implements AttributeConverter<SimNao, String> {
 
     @Override
     public String convertToDatabaseColumn (SimNao atributo) {
+
         return (atributo == null) ? null : atributo.getCodigo();
     }
 

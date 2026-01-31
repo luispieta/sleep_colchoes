@@ -1,12 +1,13 @@
 package sleep.colchoes.domain.enums;
 
-public enum SimNao {
-    SIM("S"),
-    NAO("N");
+public enum StatusPedido {
+    PENDENTE("P"),
+    APROVADO("A"),
+    CANCELADO("C");
 
     private final String codigo;
 
-    SimNao(String codigo) {
+    StatusPedido(String codigo) {
         this.codigo = codigo;
     }
 
@@ -14,12 +15,14 @@ public enum SimNao {
         return codigo;
     }
 
-    public static SimNao fromCodigo(String codigo) {
+    public static StatusPedido fromCodigo(String codigo) {
         if (codigo == null) return null;
         return switch (codigo.toUpperCase()) {
-            case "S" -> SIM;
-            case "N" -> NAO;
+            case "P" -> PENDENTE;
+            case "A" -> APROVADO;
+            case "C" -> CANCELADO;
             default -> throw new IllegalArgumentException("Código inválido: " + codigo);
         };
+
     }
 }

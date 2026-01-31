@@ -1,7 +1,7 @@
-//package sleep.colchoes.domain.pedido;
-//
-//import org.springframework.data.jpa.repository.JpaRepository;
-//
-//public interface PedidoRepository extends JpaRepository<Pedido, Long> {
-//
-//}
+package sleep.colchoes.domain.pedido;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PedidoRepository extends JpaRepository<Pedido, Long> {
+
+}

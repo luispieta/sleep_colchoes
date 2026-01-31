@@ -1,30 +1,21 @@
 package sleep.colchoes.domain.pedido;
 
-import jakarta.validation.constraints.NotNull;
 import sleep.colchoes.domain.endereco.Endereco;
 import sleep.colchoes.domain.enums.StatusPedido;
 import sleep.colchoes.domain.pessoa.Pessoa;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
-public record DTOCadastrarPedido(
-                                @NotNull
+public record DTOAtualizarPedido(
                                 Pessoa pessoa,
-                                @NotNull
-                                LocalDateTime dataEmissao,
-                                @NotNull
                                 Endereco enderecoEntrega,
-                                @NotNull
                                 List<ItemPedido> itens,
                                 LocalDate dataPrevisaoEntrega,
                                 BigDecimal valorFrete,
                                 BigDecimal valorMercadoria,
                                 BigDecimal valorTotal,
                                 String responsavelEntrega,
-                                @NotNull
                                 Pessoa vendedor,
                                 StatusPedido statusPedido,
                                 String observacaoAdicionais,

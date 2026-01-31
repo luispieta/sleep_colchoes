@@ -1,4 +1,4 @@
-package sleep.colchoes.domain.pessoa;
+package sleep.colchoes.domain.enums;
 
 public enum Genero {
     MASCULINO,
