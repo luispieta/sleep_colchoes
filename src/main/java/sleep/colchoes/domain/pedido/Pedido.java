@@ -6,17 +6,17 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 import sleep.colchoes.domain.endereco.Endereco;
 import sleep.colchoes.domain.enums.StatusPedido;
 import sleep.colchoes.domain.pessoa.Pessoa;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Table(name = "pedidos")
 @Entity(name = "Pedido")
+@Table(name = "pedidos")
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,27 +27,32 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_PESSOA")
-    private Pessoa pessoa;
-    private LocalDateTime dataEmissao;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_CLIENTE")
+    private Pessoa cliente;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ENDERECO_ENTREGA")
     private Endereco enderecoEntrega;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_VENDEDOR")
+    private Pessoa vendedor;
+    private LocalDateTime dataEmissao;
+
+    @OneToMany
+    @JoinColumn(name = "ID_PEDIDO")
     private List<ItemPedido> itens;
+
     private LocalDate dataPrevisaoEntrega;
     private BigDecimal valorFrete;
     private BigDecimal valorMercadoria;
     private BigDecimal valorTotal;
     private String responsavelEntrega;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_PESSOA")
-    private Pessoa vendedor;
-
     @Enumerated(EnumType.STRING)
     private StatusPedido statusPedido;
+
     private String observacaoAdicionais;
     private String observacaoInterna;
 
@@ -57,10 +62,11 @@ public class Pedido {
     }
 
     public BigDecimal getValorMercadoria() {
-        return itens == null ? BigDecimal.ZERO :
-                itens.stream()
-                        .map(ItemPedido::getValorTotalItem)
-                        .reduce(BigDecimal.ZERO, BigDecimal::add);
+        return itens == null
+                ? BigDecimal.ZERO
+                : itens.stream()
+                .map(ItemPedido::getValorTotalItem)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getValorTotal() {
@@ -68,56 +74,61 @@ public class Pedido {
         return getValorMercadoria().add(frete);
     }
 
-    public Pedido(@Valid DTOCadastrarPedido dados) {
-        this.pessoa = dados.pessoa();
-        this.dataEmissao = dados.dataEmissao();
-        this.enderecoEntrega = dados.enderecoEntrega();
-        this.itens = dados.itens();
+    public Pedido(
+            Pessoa cliente,
+            Endereco enderecoEntrega,
+            Pessoa vendedor,
+            List<ItemPedido> itens,
+            @Valid DTOCadastrarPedido dados
+    ) {
+        this.cliente = cliente;
+        this.enderecoEntrega = enderecoEntrega;
+        this.vendedor = vendedor;
+        this.itens = itens;
         this.dataPrevisaoEntrega = dados.dataPrevisaoEntrega();
         this.valorFrete = dados.valorFrete();
-        this.valorMercadoria = dados.valorMercadoria();
         this.responsavelEntrega = dados.responsavelEntrega();
-        this.vendedor = dados.vendedor();
         this.statusPedido = dados.statusPedido();
         this.observacaoAdicionais = dados.observacaoAdicionais();
         this.observacaoInterna = dados.observacaoInterna();
-
     }
 
-    public void atualizarInformacoes(@Valid DTOAtualizarPedido dados) {
-        if(dados.pessoa() != null) {
-            this.pessoa = dados.pessoa();
+    public void atualizarInformacoes(
+            Pessoa cliente,
+            Endereco enderecoEntrega,
+            Pessoa vendedor,
+            List<ItemPedido> itens,
+            @Valid DTOAtualizarPedido dados
+    ) {
+        if (dados.clienteId() != null) {
+            this.cliente = cliente;
         }
-        if(dados.enderecoEntrega() != null) {
-            this.enderecoEntrega = dados.enderecoEntrega();
+        if (dados.enderecoEntregaId() != null) {
+            this.enderecoEntrega = enderecoEntrega;
         }
-        if(dados.itens() != null) {
-            this.itens = dados.itens();
+        if (dados.itens() != null) {
+            this.itens = itens;
         }
-        if(dados.dataPrevisaoEntrega() != null) {
+        if (dados.dataPrevisaoEntrega() != null) {
             this.dataPrevisaoEntrega = dados.dataPrevisaoEntrega();
         }
-        if(dados.valorFrete() != null) {
+        if (dados.valorFrete() != null) {
             this.valorFrete = dados.valorFrete();
         }
-        if(dados.valorMercadoria() != null) {
-            this.valorMercadoria = dados.valorMercadoria();
-        }
-        if(dados.responsavelEntrega() != null) {
+        if (dados.responsavelEntrega() != null) {
             this.responsavelEntrega = dados.responsavelEntrega();
         }
-        if(dados.vendedor() != null) {
-            this.vendedor = dados.vendedor();
+        if (dados.vendedorId() != null) {
+            this.vendedor = vendedor;
         }
-        if(dados.statusPedido() != null) {
+        if (dados.statusPedido() != null) {
             this.statusPedido = dados.statusPedido();
         }
-        if(dados.observacaoAdicionais() != null) {
+        if (dados.observacaoAdicionais() != null) {
             this.observacaoAdicionais = dados.observacaoAdicionais();
         }
-        if(dados.observacaoInterna() != null) {
+        if (dados.observacaoInterna() != null) {
             this.observacaoInterna = dados.observacaoInterna();
         }
-
     }
 }

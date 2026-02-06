@@ -1,0 +1,32 @@
+@use "../../styles/variaveis" as *;
+
+.lista-suspensa-pesquisa {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $cor-primaria;
+  
+  input {
+    height: 48px;
+    padding: 0 1rem;
+    border: $borda-padrao;
+    border-radius: $radius-padrao;
+    background-color: #f4f4f5;
+    color: $cor-primaria;
+    font-size: 0.95rem;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  
+    &:focus {
+      background-color: #ffffff;
+      box-shadow: 0 0 0 2px rgba($cor-primaria, 0.15);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  
+  }
+}

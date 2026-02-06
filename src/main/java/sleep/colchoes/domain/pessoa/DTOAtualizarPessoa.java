@@ -13,6 +13,7 @@ public record DTOAtualizarPessoa(
                                 Genero genero,
                                 LocalDate dataNascimento,
                                 DTOAtualizarEndereco enderecoEntrega,
-                                DTOAtualizarEndereco enderecoCobranca) {
-
-}
+                                DTOAtualizarEndereco enderecoCobranca,
+                                Boolean ativo,
+                                Boolean vendedor
+) { }

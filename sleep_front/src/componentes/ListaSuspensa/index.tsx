@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import "./listaFlutuante.scss"
+import "./listaSuspensa.scss"
 
 interface PropsListaSuspensa<T extends string> {
     nome: string;

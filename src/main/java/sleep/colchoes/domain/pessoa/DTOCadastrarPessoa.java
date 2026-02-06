@@ -2,6 +2,7 @@ package sleep.colchoes.domain.pessoa;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import sleep.colchoes.domain.endereco.DTOCadastrarEndereco;
 import sleep.colchoes.domain.endereco.Endereco;
 import sleep.colchoes.domain.enums.Genero;
 
@@ -20,8 +21,9 @@ public record DTOCadastrarPessoa(
                                 @NotNull
                                 LocalDate dataNascimento,
                                 @NotNull
-                                Endereco enderecoEntrega,
+                                DTOCadastrarEndereco enderecoCobranca,
                                 @NotNull
-                                Endereco enderecoCobranca
-) {
-}
+                                DTOCadastrarEndereco enderecoEntrega,
+                                Boolean ativo,
+                                Boolean vendedor
+) { }

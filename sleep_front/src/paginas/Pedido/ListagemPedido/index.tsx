@@ -57,19 +57,17 @@ export default function ListagemPedido() {
                     labelLista={"Status do pedido"}
                     idLista={"tipo-pedido"}
                     descricao={"Novo pedido"}
-                    to={"/pedido/cadastropedido"} 
-                    pesquisa={filtro} 
-                    setPesquisa={setFiltro}
-                    itens={statusPedido}                
+                    to={"/pedido/cadastropedido"}
+                    pesquisa={filtro}
+                    setPesquisa={setFiltro} itens={[]}                
                 />  
                 <Listagens
                     colunas={[
                         { cabecalho: "Código" },
-                        { cabecalho: "Nome da Pessoa" },
-                        { cabecalho: "Marca" },
-                        { cabecalho: "Tipo do pedido" },
-                        { cabecalho: "Medida" },
-                        { cabecalho: "Preço" },
+                        { cabecalho: "Nome da pessoa" },
+                        { cabecalho: "Valor Total" },
+                        { cabecalho: "Vendedor" },
+                        { cabecalho: "Status do pedido" },
                         { cabecalho: "Ações" }
                     ]}
                     data={pedidoFiltradas}
@@ -77,15 +75,14 @@ export default function ListagemPedido() {
                         <tr key={pedido.id}>
                             <td>{pedido.id}</td>
                             <td>{pedido.pessoa.nome}</td>
+                            <td>R$ {pedido.valorTotal}</td>
                             <td>{pedido.vendedor.nome}</td>
                             <td>{pedido.statusPedido}</td>
-                            <td>R$ {pedido.valorTotal}</td>
-                            <td>{pedido.enderecoEntrega.cidade} - {pedido.enderecoEntrega.uf}</td>
                             <td className="acoes">
                                 <BsPencilFill 
                                     size={16}
                                     onClick={() => editarPedido(pedido.id)}
-                                 />
+                                />
                             </td>
                         </tr>
                     )}

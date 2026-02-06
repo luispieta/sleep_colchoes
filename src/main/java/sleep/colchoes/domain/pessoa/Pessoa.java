@@ -38,6 +38,7 @@ public class Pessoa {
     @JoinColumn(name = "ID_ENDERECO_COBRANCA")
     private Endereco enderecoCobranca;
     private Boolean ativo;
+    private Boolean vendedor;
 
     public Pessoa(DTOCadastrarPessoa dados) {
         this.nome = dados.nome();
@@ -46,8 +47,10 @@ public class Pessoa {
         this.email = dados.email();
         this.genero = dados.genero();
         this.dataNascimento = dados.dataNascimento();
-        this.enderecoCobranca = dados.enderecoCobranca();
-        this.enderecoEntrega = dados.enderecoEntrega();
+        this.enderecoCobranca = new Endereco(dados.enderecoCobranca());
+        this.enderecoEntrega = new Endereco(dados.enderecoEntrega());
+        this.ativo = dados.ativo();
+        this.vendedor = dados.vendedor();
     }
 
     public void atualizarInformacoes(DTOAtualizarPessoa dados) {
@@ -74,6 +77,12 @@ public class Pessoa {
         }
         if(dados.enderecoCobranca() != null) {
             this.enderecoCobranca.atualizarInformacoes(dados.enderecoCobranca());
+        }
+        if(dados.ativo() != null) {
+            this.ativo = dados.ativo();
+        }
+        if(dados.vendedor() != null) {
+            this.vendedor = dados.vendedor();
         }
 
     }

@@ -7,7 +7,10 @@ import "./cadastroPedido.scss"
 import { useNavigate, useParams } from "react-router-dom";
 import { usePedidoForm } from "../../../hooks/pedido/usePedidoForm";
 import { usePedido } from "../../../hooks/pedido/usePedido";
-import { salvarPedidoApi } from "../../../services/pedidoService";
+import { listarPedidos, salvarPedidoApi } from "../../../services/pedidoService";
+import ListaSuspensaPesquisa from "../../../componentes/ListaSuspensaPesquisa";
+import { useEffect, useState } from "react";
+import type { PedidoData } from "../../../types/pedido/PedidoData";
 
 export default function CadastroPedido() {
     const { id } = useParams<{ id: string }>();
@@ -21,6 +24,14 @@ export default function CadastroPedido() {
     } = usePedidoForm();
 
     usePedido(id, setters);
+
+    const [pedidos, setPedidos] = useState<PedidoData[]>([]);
+
+    useEffect(() => {
+    listarPedidos()
+        .then(setPedidos)
+        .catch(console.error);
+    }, []);
 
     async function salvarPedido(e: React.FormEvent) {
         e.preventDefault();
@@ -44,7 +55,7 @@ export default function CadastroPedido() {
         limparFormulario();
         navigate("/pedido/cadastropedido");
     }
-        
+
     return(
         <div className="cadastro-pedido">
             <MenuLateral />
@@ -64,7 +75,17 @@ export default function CadastroPedido() {
                     <h4>Dados do Pedido</h4>
                 </div>        
                 <div className="linha linha-2">
-                    
+                    <ListaSuspensaPesquisa<PedidoData>
+                    nome="pedido"
+                    label="Pedido"
+                    itens={pedidos}
+                    getKey={(p) => p.id}
+                    getLabel={(p) => `${p.id} - ${p.pessoa}`}
+                    onSelect={(pedido) =>
+                        setters.setPessoaId(pedido.id)
+                    }
+                />
+
                 </div>
 
                 <div className="linha linha-3">
