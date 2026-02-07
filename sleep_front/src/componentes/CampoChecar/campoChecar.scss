@@ -1,0 +1,56 @@
+@use "../../styles/variaveis" as *;
+
+.campo-checar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .nome-checar {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .checar {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+
+    .checar input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      margin: 0;
+      outline: none;
+    }
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: $cor-tercearia;
+    transition: 0.3s;
+    border-radius: 999px;
+  }
+
+  .slider::before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: $cor-segundaria;
+    transition: 0.3s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background-color: $cor-primaria;
+  }
+
+  input:checked + .slider::before {
+    transform: translateX(20px);
+  }
+}

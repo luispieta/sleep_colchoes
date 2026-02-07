@@ -7,6 +7,9 @@ export function usePessoa(id?: string, setters?: any) {
 
     buscarPessoaPorId(id)
       .then(data => {
+          console.log("RAW vendedor:", data.vendedor, typeof data.vendedor);
+  console.log("RAW ativo:", data.ativo, typeof data.ativo);
+
         setters.setNome(data.nome ?? "");
         setters.setCpf(data.cpf ?? "");
         setters.setTelefone(data.telefone ?? "");
@@ -25,6 +28,8 @@ export function usePessoa(id?: string, setters?: any) {
         setters.setUf(data.enderecoEntrega?.uf ?? "");
         setters.setCep(data.enderecoEntrega?.cep ?? "");
         setters.setLogradouro(data.enderecoEntrega?.logradouro ?? "");
+        setters.setVendedor(Boolean(data.vendedor ?? false));
+        setters.setAtivo(Boolean(data.ativo ?? false));
       })
       .catch(console.error);
   }, [id]);

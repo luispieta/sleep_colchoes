@@ -9,6 +9,8 @@ export function usePessoaForm() {
   const [email, setEmail] = useState("");
   const [genero, setGenero] = useState<Genero | "">("");
   const [dataNascimento, setDataNascimento] = useState("");
+  const [vendedor, setVendedor] = useState<boolean>(false);
+  const [ativo, setAtivo] = useState<boolean>(true);
 
   const [rua, setRua] = useState("");
   const [numero, setNumero] = useState("");
@@ -18,7 +20,7 @@ export function usePessoaForm() {
   const [cep, setCep] = useState("");
   const [logradouro, setLogradouro] = useState("");
 
-  function montarPayload(): Omit<PessoaData, "id" | "ativo"> {
+  function montarPayload(): Omit<PessoaData, "id"> {
     return {
       nome,
       cpf,
@@ -26,6 +28,8 @@ export function usePessoaForm() {
       email,
       genero: genero as Genero,
       dataNascimento: new Date(dataNascimento),
+      vendedor,
+      ativo,
       enderecoEntrega: {
         id: 0,
         rua,
@@ -56,6 +60,8 @@ export function usePessoaForm() {
     setEmail("");
     setGenero("");
     setDataNascimento("");
+    setVendedor(false);
+    setAtivo(false);
 
     setRua("");
     setNumero("");
@@ -81,6 +87,8 @@ export function usePessoaForm() {
       uf,
       cep,
       logradouro,
+      vendedor,
+      ativo
     },
     setters: {
       setNome,
@@ -96,6 +104,8 @@ export function usePessoaForm() {
       setUf,
       setCep,
       setLogradouro,
+      setVendedor,
+      setAtivo
     },
     montarPayload,
     limparFormulario,

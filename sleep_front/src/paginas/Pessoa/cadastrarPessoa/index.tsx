@@ -13,6 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { salvarPessoaApi } from "../../../services/pessoaService";
 import { usePessoaForm } from "../../../hooks/pessoa/usePessoaForm";
 import { usePessoa } from "../../../hooks/pessoa/usePessoa";
+import CampoChecar from "../../../componentes/CampoChecar";
 
 export default function CadastrarPessoa() {
   
@@ -240,6 +241,24 @@ export default function CadastrarPessoa() {
           >
             Logradouro
           </Campos>
+        </div>
+        
+        <div className="linha linha-2">
+          <CampoChecar
+            nome="campo-vendedor"
+            checado={estados.vendedor}
+            onChange={setters.setVendedor}
+          >
+            Vendedor
+          </CampoChecar>  
+
+          <CampoChecar
+            nome="campo-ativo"
+            checado={estados.ativo}
+            onChange={setters.setAtivo}
+          >
+            Ativo
+          </CampoChecar>
         </div>
 
         <div className="linha-acoes">

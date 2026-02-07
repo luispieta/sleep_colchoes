@@ -37,7 +37,11 @@ public class Pessoa {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ENDERECO_COBRANCA")
     private Endereco enderecoCobranca;
+
+    @Column(name = "ATIVO", nullable = false)
     private Boolean ativo;
+
+    @Column(name = "VENDEDOR", nullable = false)
     private Boolean vendedor;
 
     public Pessoa(DTOCadastrarPessoa dados) {

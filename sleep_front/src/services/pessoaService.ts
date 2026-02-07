@@ -38,7 +38,7 @@ export async function buscarPessoaPorId(id: string): Promise<PessoaData> {
 }
 
 export async function salvarPessoaApi(
-  payload: Omit<PessoaData, "id" | "ativo">,
+  payload: Omit<PessoaData, "id" >,
   id?: string
 ): Promise<PessoaData> {
   

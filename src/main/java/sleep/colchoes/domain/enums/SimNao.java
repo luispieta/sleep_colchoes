@@ -1,24 +1,23 @@
 package sleep.colchoes.domain.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum SimNao {
-    SIM("S"),
-    NAO("N");
+    SIM(1),
+    NAO(0);
 
-    private final String codigo;
+    private final Integer codigo;
 
-    SimNao(String codigo) {
+    SimNao(Integer codigo) {
         this.codigo = codigo;
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public static SimNao fromCodigo(String codigo) {
+    public static SimNao fromCodigo(Integer codigo) {
         if (codigo == null) return null;
-        return switch (codigo.toUpperCase()) {
-            case "S" -> SIM;
-            case "N" -> NAO;
+        return switch (codigo) {
+            case 1 -> SIM;
+            case 0 -> NAO;
             default -> throw new IllegalArgumentException("Código inválido: " + codigo);
         };
     }
