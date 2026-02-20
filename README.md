@@ -90,3 +90,101 @@ Antes de rodar o projeto, você precisa ter instalado:
 
 ```bash
 git clone https://github.com/luispieta/sleep_colchoes.git
+```
+
+## ▶ Executando o Backend
+
+Acesse a pasta do backend:
+
+```
+cd sleep_colchoes
+```
+
+Execute o projeto com Maven:
+
+```
+mvn spring-boot:run
+```
+
+Ou rode pela sua IDE executando a classe principal do Spring Boot.
+
+Por padrão o backend irá subir em:
+
+```
+http://localhost:8080
+```
+
+## ▶ Executando o Frontend
+
+Acesse a pasta do frontend:
+
+```
+cd sleep_front
+```
+
+Instale as dependências:
+
+```
+npm install
+```
+
+Rode o projeto:
+
+```
+npm start
+```
+
+O frontend irá subir em:
+
+```
+http://localhost:3000
+```
+
+## 🔄 Integração Frontend ↔ Backend
+
+A comunicação ocorre via API REST utilizando Fetch, mas será alterado para Axios futuramente.
+
+Exemplo de endpoint:
+
+- GET /produtos
+
+- POST /produtos
+
+## 🧩 Boas Práticas Aplicadas
+
+- Separação de responsabilidades (SRP)
+
+- Arquitetura em camadas
+
+- Componentização no React
+
+- Código organizado e legível
+
+- Padrão REST
+
+- Versionamento semântico
+
+- Estrutura escalável
+
+## 📈 Melhorias Futuras
+
+- Dashboard administrativo
+
+- Paginação e filtros
+
+- Deploy em ambiente cloud
+
+- Testes automatizados (JUnit / React Testing Library)
+
+# 📌 Status do Projeto
+
+### 🟡 Em desenvolvimento
+Projeto utilizado para estudo e aprimoramento contínuo.
+
+# 👨‍💻 Autor
+
+Luis Pieta
+Estudante de Análise e Desenvolvimento de Sistemas na UNIDEP
+Analista de Testes | Entusiasta em Desenvolvimento Full Stack
+
+GitHub: https://github.com/luispieta
